@@ -99,29 +99,29 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="radPro">¿Qué sistema de salud es al primero que acude al presentar problemas de salud?</label><br>
+                                <label for="problemasSalud">¿Qué sistema de salud es al primero que acude al presentar problemas de salud?</label><br>
                                 <div class="form-check">
-                                    <input checked class="form-check-input" type="radio" name="radPro" id="publico" value="publico" chec>
+                                    <input checked class="form-check-input" type="radio" name="problemasSalud" id="publico" value="publico" chec>
                                     <label class="form-check-label" for="publico">Público</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="radPro" id="privado" value="privado">
+                                    <input class="form-check-input" type="radio" name="problemasSalud" id="privado" value="privado">
                                     <label class="form-check-label" for="privado">Privado</label>
                                 </div>
-                                <p id="radPro-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
+                                <p id="problemasSalud-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
 
                             <div class="form-group">
-                                <label for="radProMejorServicio">¿Qué sistema de salud le ha dado mejor servicio?</label><br>
+                                <label for="mejorServicio">¿Qué sistema de salud le ha dado mejor servicio?</label><br>
                                 <div class="form-check">
-                                    <input checked class="form-check-input" type="radio" name="radProMejorServicio" id="publicoServicio" value="publico">
+                                    <input checked class="form-check-input" type="radio" name="mejorServicio" id="publicoServicio" value="publico">
                                     <label class="form-check-label" for="publicoServicio">Público</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="radProMejorServicio" id="privadoServicio" value="privado">
+                                    <input class="form-check-input" type="radio" name="mejorServicio" id="privadoServicio" value="privado">
                                     <label class="form-check-label" for="privadoServicio">Privado</label>
                                 </div>
-                                <p id="radProMejorServicio-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
+                                <p id="mejorServicio-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
 
                             <div class="form-group">

@@ -5,7 +5,7 @@ class app {
     }
 
     hideErrors() {
-        $('#curp-error, #edad-error, #estado-error, #radPro-error, #radProMejorServicio-error, #consultasPublicas-error, #consultasPrivadas-error, #saludPublica-error, #saludPrivada-error, #gastoPublico-error, #gastoPrivado-error, #clinicasPublicas-error, #clinicasPrivadas-error, #serviciosUsados-error, #satisfaccionPublica-error, #satisfaccionPrivada-error, #accesibilidadDistancia-error, #chequeosAnuales-error, #consultasOnline-error, #razonNoVisita-error, #afiliacionSalud-error, #seguroGastos-error, #medicamentosDificultad-error, #mejoras-error').hide();
+        $('#curp-error, #edad-error, #estado-error, #problemasSalud-error, #mejorServicio-error, #consultasPublicas-error, #consultasPrivadas-error, #saludPublica-error, #saludPrivada-error, #gastoPublico-error, #gastoPrivado-error, #clinicasPublicas-error, #clinicasPrivadas-error, #serviciosUsados-error, #satisfaccionPublica-error, #satisfaccionPrivada-error, #accesibilidadDistancia-error, #chequeosAnuales-error, #consultasOnline-error, #razonNoVisita-error, #afiliacionSalud-error, #seguroGastos-error, #medicamentosDificultad-error, #mejoras-error').hide();
     }
 
     setupEventListeners() {
