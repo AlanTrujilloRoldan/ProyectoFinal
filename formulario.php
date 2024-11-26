@@ -101,7 +101,7 @@
                             <div class="form-group">
                                 <label for="problemasSalud">¿Qué sistema de salud es al primero que acude al presentar problemas de salud?</label><br>
                                 <div class="form-check">
-                                    <input checked class="form-check-input" type="radio" name="problemasSalud" id="publico" value="publico" chec>
+                                    <input checked class="form-check-input" type="radio" name="problemasSalud" id="publico" value="publico">
                                     <label class="form-check-label" for="publico">Público</label>
                                 </div>
                                 <div class="form-check">
@@ -330,8 +330,8 @@
                                 <select class="form-control" id="consultasOnline">
                                     <option value="" disabled selected>--Selecciona--</option>
                                     <option value="Nunca">Nunca</option>
-                                    <option value="Ocasionalmente">Ocasionalmente</option>
-                                    <option value="Frecuentemente">Frecuentemente</option>
+                                    <option value="Una vez al año">Una vez al año</option>
+                                    <option value="Más de una vez al año">Más de una vez al año</option>
                                 </select>
                                 <p id="consultasOnline-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>

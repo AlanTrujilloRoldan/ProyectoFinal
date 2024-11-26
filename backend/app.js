@@ -1,3 +1,64 @@
+const estados = {
+    "Aguascalientes": 1,
+    "Baja California": 2,
+    "Baja California Sur": 3,
+    "Campeche": 4,
+    "Chiapas": 5,
+    "Chihuahua": 6,
+    "Ciudad de México": 7,
+    "Coahuila": 8,
+    "Colima": 9,
+    "Durango": 10,
+    "Estado de México": 11,
+    "Guanajuato": 12,
+    "Guerrero": 13,
+    "Hidalgo": 14,
+    "Jalisco": 15,
+    "Michoacán": 16,
+    "Morelos": 17,
+    "Nayarit": 18,
+    "Nuevo León": 19,
+    "Oaxaca": 20,
+    "Puebla": 21,
+    "Querétaro": 22,
+    "Quintana Roo": 23,
+    "San Luis Potosí": 24,
+    "Sinaloa": 25,
+    "Sonora": 26,
+    "Tabasco": 27,
+    "Tamaulipas": 28,
+    "Tlaxcala": 29,
+    "Veracruz": 30,
+    "Yucatán": 31,
+    "Zacatecas": 32
+};
+
+const satisfaccion = {
+    "Muy satisfecho": 1,
+    "Satisfecho": 2,
+    "Insatisfecho": 3, 
+    "Muy insatisfecho": 4
+};
+
+const accesibilidad = {
+    "Muy accesibles": 1,
+    "Moderadamente accesibles": 2,
+    "Poco accesibles": 3, 
+    "Inaccesibles": 4
+};
+
+const frecuencia = {
+    "Nunca": 1,
+    "Una vez al año": 2,
+    "Más de una vez al año": 3, 
+}
+
+const razones = {
+    "Problema económico": 1,
+    "Falta de tiempo": 2,
+    "Lejanía de su domicilio al hospital, clínica, etc.": 3, 
+}
+
 class app {
     constructor() {
         this.setupEventListeners();
@@ -61,54 +122,109 @@ class app {
 
     validateForm() {
         return (
-            this.validateCURP() &&
+            this.validateCURP() /*&&
             this.validateEdad() &&
-            this.validateSelector('#estado','#estado-error') &&
-            this.validateNumber365('#consultasPublicas','#consultasPublicas-error') &&
-            this.validateNumber365('#consultasPrivadas','#consultasPrivadas-error') &&
+            this.validateSelector('#estado', '#estado-error') &&
+            this.validateNumber365('#consultasPublicas', '#consultasPublicas-error') &&
+            this.validateNumber365('#consultasPrivadas', '#consultasPrivadas-error') &&
             this.validateCheckBoxGroup('.saludPublicaCheckbox', '#saludPublica-error') &&
             this.validateCheckBoxGroup('.saludPrivadaCheckbox', '#saludPrivada-error') &&
-            this.validateNumberInt('#gastoPublico','#gastoPublico-error') &&
-            this.validateNumberInt('#gastoPrivado','#gastoPrivado-error') &&
-            this.validateNumberInt('#clinicasPublicas','#clinicasPublicas-error') &&
-            this.validateNumberInt('#clinicasPrivadas','#clinicasPrivadas-error') &&
+            this.validateNumberInt('#gastoPublico', '#gastoPublico-error') &&
+            this.validateNumberInt('#gastoPrivado', '#gastoPrivado-error') &&
+            this.validateNumberInt('#clinicasPublicas', '#clinicasPublicas-error') &&
+            this.validateNumberInt('#clinicasPrivadas', '#clinicasPrivadas-error') &&
             this.validateCheckBoxGroup('.serviciosUsados', '#serviciosUsados-error') &&
-            this.validateSelector('#satisfaccionPublica','#satisfaccionPublica-error') &&
-            this.validateSelector('#satisfaccionPrivada','#satisfaccionPrivada-error') &&
-            this.validateSelector('#accesibilidadDistancia','#accesibilidadDistancia-error') &&
-            this.validateSelector('#chequeosAnuales','#chequeosAnuales-error') &&
-            this.validateSelector('#consultasOnline','#consultasOnline-error') &&
-            this.validateSelector('#razonNoVisita','#razonNoVisita-error') &&
+            this.validateSelector('#satisfaccionPublica', '#satisfaccionPublica-error') &&
+            this.validateSelector('#satisfaccionPrivada', '#satisfaccionPrivada-error') &&
+            this.validateSelector('#accesibilidadDistancia', '#accesibilidadDistancia-error') &&
+            this.validateSelector('#chequeosAnuales', '#chequeosAnuales-error') &&
+            this.validateSelector('#consultasOnline', '#consultasOnline-error') &&
+            this.validateSelector('#razonNoVisita', '#razonNoVisita-error') &&
             this.validateRadioButtonGroup('input[name="afiliacion"]', '#afiliacionSalud-error') &&
             this.validateRadioButtonGroup('input[name="seguro"]', '#seguroGastos-error') &&
             this.validateRadioButtonGroup('input[name="medicamentos"]', '#medicamentosDificultad-error') &&
-            this.validateCheckBoxGroup('.mejorasCheckbox', '#mejoras-error')
+            this.validateCheckBoxGroup('.mejorasCheckbox', '#mejoras-error')*/
         );
     }
 
-    
+
     submitForm(e) {
         e.preventDefault();
 
         if (!this.validateForm()) return;
-        console.log(!this.validateForm());
-        
-        /*
+
         const peopleData = {
-            id: $('#productId').val(),
-            name: $('#name').val(),
-            brand: $('#brand').val(),
-            model: $('#model').val(),
-            price: $('#price').val(),
-            details: $('#details').val(),
-            units: $('#units').val(),
-            image: $('#image').val(),
+            curp: $('#curp').val(),
+            edad: $('#edad').val(),
+            estado: this.handleSelect('#estado',estados),
+            problemasSalud: this.handleChecked('#publico'),
+            mejorServicio: this.handleChecked('#publicoServicio'),
+            consultasPublicas: $('#consultasPublicas').val(),
+            consultasPrivadas: $('#consultasPrivadas').val(),
+            publicoMB: this.handleNegChecked('#publicoMalestares'),
+            publicoOQ: this.handleNegChecked('#publicoOperaciones'),
+            publicoEV: this.handleNegChecked('#publicoVeneras'),
+            publicoEC: this.handleNegChecked('#publicoCronicas'),
+            publicoC: this.handleNegChecked('#publicoChequeos'),
+            publicoTD: this.handleNegChecked('#publicoDentales'),
+            publicoO: this.handleNegChecked('#publicoOtros'),
+            privadoMB: this.handleNegChecked('#privadoMalestares'),
+            privadoOQ: this.handleNegChecked('#privadoOperaciones'),
+            privadoEV: this.handleNegChecked('#privadoVeneras'),
+            privadoEC: this.handleNegChecked('#privadoCronicas'),
+            privadoC: this.handleNegChecked('#privadoChequeos'),
+            privadoTD: this.handleNegChecked('#privadoDentales'),
+            privadoO: this.handleNegChecked('#privadoOtros'),
+            gastoPublico: $('#gastoPublico').val(),
+            gastoPrivado: $('#gastoPrivado').val(),
+            clinicasPublicas: $('#clinicasPublicas').val(),
+            clinicasPrivadas: $('#clinicasPrivadas').val(),
+            IMSS: this.handleNegChecked('#imss'),
+            ISSSTE: this.handleNegChecked('#issste'),
+            farmaciasSimilares: this.handleNegChecked('#farmaciasSimilares'),
+            cruzRoja: this.handleNegChecked('#cruzRoja'),
+            hospitalesGenerales: this.handleNegChecked('#hospitalesGenerales'),
+            hospitalesPrivados: this.handleNegChecked('#hospitalesPrivados'),
+            otrosServicios: this.handleNegChecked('#otrosServicios'),
+            satisfaccionPublica: this.handleSelect('#satisfaccionPublica',satisfaccion),
+            satisfaccionPrivada: this.handleSelect('#satisfaccionPrivada',satisfaccion),
+            accesibilidadDistancia: this.handleSelect('#accesibilidadDistancia',accesibilidad),
+            chequeosAnuales: this.handleSelect('#chequeosAnuales',frecuencia),
+            consultasOnline: this.handleSelect('#consultasOnline',frecuencia),
+            razonNoVisita: this.handleSelect('#razonNoVisita',razones),
+            afiliacionSalud: this.handleChecked('#afiliacionSi'),
+            seguroGastos: this.handleChecked('#seguroSi'),
+            medicamentosDificultad: this.handleChecked('#medicamentosSi'),
+            infraestructura: this.handleNegChecked('#mejorarInfraestructura'),
+            personal: this.handleNegChecked('#contratarPersonal'),
+            costos: this.handleNegChecked('#reducirCostos'),
+            disponibilidadMed: this.handleNegChecked('#aumentarMedicamentos'),
+            otroMejoras:this.handleNegChecked('#otroMejoras')
         };
 
-        this.saveProduct('./backend/product-add.php', peopleData);
-        */
+        console.log(peopleData);
+
+        //this.saveProduct('./backend/product-add.php', peopleData);
+
     }
 
+    handleSelect(selector, lista) {
+        const select = $(selector).val();
+        if (select in lista) {
+            const selectNumero = lista[select];
+            return selectNumero;
+        }
+    }
+
+    handleChecked(selector) {
+        const checked = $(selector).is(':checked');
+        return checked ? 0 : 1;
+    }
+
+    handleNegChecked(selector) {
+        const checked = $(selector).is(':checked');
+        return checked ? 1 : 0;
+    }
 
 
     validateCURP() {
@@ -136,7 +252,6 @@ class app {
     validateSelector(selector, errorSelector) {
         const value = $(selector).val();
         $(errorSelector).hide();
-
         if (value === null) {
             $(errorSelector).text('Selecciona una opción válida').show();
             return false;
@@ -147,7 +262,9 @@ class app {
     validateRadioButtonGroup(selector, errorSelector) {
         const isSelected = $(selector).is(':checked'); // Verifica si alguna opción está seleccionada
         $(errorSelector).hide();
-    
+
+        console.log($(selector).val());
+
         if (!isSelected) {
             $(errorSelector).text('Selecciona una opción').show();
             return false;
@@ -169,7 +286,7 @@ class app {
     validateNumberInt(selector, errorSelector) {
         const numberInput = $(selector).val();
         const number = parseInt(numberInput, 10);
-        
+
         $(errorSelector).hide();
         if (!numberInput || number < 0 || !Number.isInteger(number)) {
             $(errorSelector).text('Ingresa un número válido').show();
@@ -181,7 +298,7 @@ class app {
     validateNumberFloat(selector, errorSelector) {
         let numberInput = $(selector).val();
         $(errorSelector).hide();
-        
+
         if (!numberInput || isNaN(numberInput) || numberInput < 0) {
             $(errorSelector).text('Ingresa un número válido').show();
             return false;
@@ -192,7 +309,7 @@ class app {
     validateCheckBoxGroup(selector, errorSelector) {
         const isSelected = $(`${selector}:checked`).length > 0; // Verifica si hay al menos un checkbox marcado
         $(errorSelector).hide();
-    
+
         if (!isSelected) {
             $(errorSelector).text('Selecciona al menos una opción').show();
             return false;
