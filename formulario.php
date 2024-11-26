@@ -424,6 +424,11 @@
                         Enviar Datos
                     </button>
                 </form>
+                <div class="card my-4 " id="data-result">
+                    <div class="card-body">
+                        <ul id="container-r"></ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -34,7 +34,7 @@
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
         <div style="position: relative; z-index: 2;">
             <h1>UMSS</h1>
-            <p class="lead">Un Mejor Sistema de Salud</p>
+            <p class="lead">Un Mejor Sistema De Salud</p>
         </div>
     </div>
 

@@ -122,7 +122,7 @@ class app {
 
     validateForm() {
         return (
-            this.validateCURP() /*&&
+            this.validateCURP() &&
             this.validateEdad() &&
             this.validateSelector('#estado', '#estado-error') &&
             this.validateNumber365('#consultasPublicas', '#consultasPublicas-error') &&
@@ -143,7 +143,7 @@ class app {
             this.validateRadioButtonGroup('input[name="afiliacion"]', '#afiliacionSalud-error') &&
             this.validateRadioButtonGroup('input[name="seguro"]', '#seguroGastos-error') &&
             this.validateRadioButtonGroup('input[name="medicamentos"]', '#medicamentosDificultad-error') &&
-            this.validateCheckBoxGroup('.mejorasCheckbox', '#mejoras-error')*/
+            this.validateCheckBoxGroup('.mejorasCheckbox', '#mejoras-error')
         );
     }
 
@@ -202,10 +202,21 @@ class app {
             otroMejoras:this.handleNegChecked('#otroMejoras')
         };
 
-        console.log(peopleData);
+        this.saveProduct('./backend/data-add.php', peopleData);
+    }
 
-        //this.saveProduct('./backend/product-add.php', peopleData);
+    async saveProduct(url, data) {
+        const response = await $.ajax({
+          url: url,
+          type: 'POST',
+          data: JSON.stringify(data),
+          contentType: 'application/json'
+        });
 
+        console.log(response);
+        const result = JSON.parse(response);
+        $('#container-r').html(`Status: ${result.status}<br />Message: ${result.message}`);
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
 
     handleSelect(selector, lista) {
