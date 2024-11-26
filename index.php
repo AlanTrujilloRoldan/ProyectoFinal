@@ -39,7 +39,7 @@
 
     <div class="container">
         <div class="row p-4">
-            <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
+            <!-- FORMULARIO PARA AGREGAR DATOS -->
             <div class="col-12">
                 <h2 class="mt-4">Información de la Página</h2>
                 <div class="card">

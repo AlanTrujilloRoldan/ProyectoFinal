@@ -169,6 +169,7 @@ class app {
     validateNumberInt(selector, errorSelector) {
         const numberInput = $(selector).val();
         const number = parseInt(numberInput, 10);
+        
         $(errorSelector).hide();
         if (!numberInput || number < 0 || !Number.isInteger(number)) {
             $(errorSelector).text('Ingresa un número válido').show();
@@ -178,11 +179,10 @@ class app {
     }
 
     validateNumberFloat(selector, errorSelector) {
-        let numberInput = $(selector).val().replace(/[^0-9.]/g, '');
-        const number = parseFloat(numberInput);
+        let numberInput = $(selector).val();
         $(errorSelector).hide();
-
-        if (!numberInput || isNaN(number) || number < 0) {
+        
+        if (!numberInput || isNaN(numberInput) || numberInput < 0) {
             $(errorSelector).text('Ingresa un número válido').show();
             return false;
         }
