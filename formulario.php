@@ -125,15 +125,15 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="numConPublicas" class="col-form-label">Número de veces en que ha requerido del servicio de salud pública este año</label>
-                                <input class="form-control" type="number" id="numConPublicas" placeholder="Ingrese un número" min="0">
-                                <p id="numConPublicas-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
+                                <label for="consultasPublicas" class="col-form-label">Número de veces en que ha requerido del servicio de salud pública este año</label>
+                                <input class="form-control" type="number" id="consultasPublicas" placeholder="Ingrese un número" min="0">
+                                <p id="consultasPublicas-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
 
                             <div class="form-group">
-                                <label for="numConPrivadas" class="col-form-label">Número de veces en que ha requerido del servicio de salud privada este año</label>
-                                <input class="form-control" type="number" id="numConPrivadas" placeholder="Ingrese un número" min="0">
-                                <p id="numConPrivadas-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
+                                <label for="consultasPrivadas" class="col-form-label">Número de veces en que ha requerido del servicio de salud privada este año</label>
+                                <input class="form-control" type="number" id="consultasPrivadas" placeholder="Ingrese un número" min="0">
+                                <p id="consultasPrivadas-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
 
                             <div class="form-group" id="saludPublica">
@@ -224,14 +224,14 @@
                                 <p id="gastoPrivado-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
                             <div class="form-group">
-                                <label for="numCliPublicas" class="col-form-label">Número de clínicas, hospitales, consultorios, etc., pertenecientes a la Secretaría de Salud Pública que conoce en su localidad </label>
-                                <input class="form-control" type="number" id="numCliPublicas" placeholder="Ingrese un número" min="0">
-                                <p id="numCliPublicas-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
+                                <label for="clinicasPublicas" class="col-form-label">Número de clínicas, hospitales, consultorios, etc., pertenecientes a la Secretaría de Salud Pública que conoce en su localidad </label>
+                                <input class="form-control" type="number" id="clinicasPublicas" placeholder="Ingrese un número" min="0">
+                                <p id="clinicasPublicas-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
                             <div class="form-group">
-                                <label for="numCliPrivadas" class="col-form-label">Número de clínicas, hospitales, consultorios, etc., pertenecientes al sector privado que conoce en su localidad </label>
-                                <input class="form-control" type="number" id="numCliPrivadas" placeholder="Ingrese un número" min="0">
-                                <p id="numCliPrivadas-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
+                                <label for="clinicasPrivadas" class="col-form-label">Número de clínicas, hospitales, consultorios, etc., pertenecientes al sector privado que conoce en su localidad </label>
+                                <input class="form-control" type="number" id="clinicasPrivadas" placeholder="Ingrese un número" min="0">
+                                <p id="clinicasPrivadas-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
                         </div>
                     </div>

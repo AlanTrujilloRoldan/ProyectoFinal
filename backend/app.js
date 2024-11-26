@@ -5,7 +5,7 @@ class app {
     }
 
     hideErrors() {
-        $('#curp-error, #edad-error, #estado-error, #radPro-error, #radProMejorServicio-error, #numConPublicas-error, #numConPrivadas-error, #saludPublica-error, #saludPrivada-error, #gastoPublico-error, #gastoPrivado-error, #numCliPublicas-error, #numCliPrivadas-error, #serviciosUsados-error, #satisfaccionPublica-error, #satisfaccionPrivada-error, #accesibilidadDistancia-error, #chequeosAnuales-error, #consultasOnline-error, #razonNoVisita-error, #afiliacionSalud-error, #seguroGastos-error, #medicamentosDificultad-error, #mejoras-error').hide();
+        $('#curp-error, #edad-error, #estado-error, #radPro-error, #radProMejorServicio-error, #consultasPublicas-error, #consultasPrivadas-error, #saludPublica-error, #saludPrivada-error, #gastoPublico-error, #gastoPrivado-error, #clinicasPublicas-error, #clinicasPrivadas-error, #serviciosUsados-error, #satisfaccionPublica-error, #satisfaccionPrivada-error, #accesibilidadDistancia-error, #chequeosAnuales-error, #consultasOnline-error, #razonNoVisita-error, #afiliacionSalud-error, #seguroGastos-error, #medicamentosDificultad-error, #mejoras-error').hide();
     }
 
     setupEventListeners() {
@@ -21,16 +21,16 @@ class app {
         $('#estado').on('blur', () => this.validateSelector('#estado', '#estado-error'));
 
         //USO Y PREFERENCIA DE SERVICIOS DE SALUD
-        $('#numConPublicas').on('blur', () => this.validateNumber365('#numConPublicas', '#numConPublicas-error'));
-        $('#numConPrivadas').on('blur', () => this.validateNumber365('#numConPrivadas', '#numConPrivadas-error'));
+        $('#consultasPublicas').on('blur', () => this.validateNumber365('#consultasPublicas', '#consultasPublicas-error'));
+        $('#consultasPrivadas').on('blur', () => this.validateNumber365('#consultasPrivadas', '#consultasPrivadas-error'));
         $('#saludPublica').on('blur', () => this.validateCheckBoxGroup('.saludPublicaCheckbox', '#saludPublica-error'));
         $('#saludPrivada').on('blur', () => this.validateCheckBoxGroup('.saludPrivadaCheckbox', '#saludPrivada-error'));
 
         //TRANSPORTE Y CERCANIA
         $('#gastoPublico').on('blur', () => this.validateNumberFloat('#gastoPublico', '#gastoPublico-error'));
         $('#gastoPrivado').on('blur', () => this.validateNumberFloat('#gastoPrivado', '#gastoPrivado-error'));
-        $('#numCliPublicas').on('blur', () => this.validateNumberInt('#numCliPublicas', '#numCliPublicas-error'));
-        $('#numCliPrivadas').on('blur', () => this.validateNumberInt('#numCliPrivadas', '#numCliPrivadas-error'));
+        $('#clinicasPublicas').on('blur', () => this.validateNumberInt('#clinicasPublicas', '#clinicasPublicas-error'));
+        $('#clinicasPrivadas').on('blur', () => this.validateNumberInt('#clinicasPrivadas', '#clinicasPrivadas-error'));
 
         //USO Y PERCEPCIÓN DE SERVICIOS
         $('#serviciosUsados').on('blur', () => this.validateCheckBoxGroup('.serviciosUsados', '#serviciosUsados-error'));
@@ -64,14 +64,14 @@ class app {
             this.validateCURP() &&
             this.validateEdad() &&
             this.validateSelector('#estado','#estado-error') &&
-            this.validateNumber365('#numConPublicas','#numConPublicas-error') &&
-            this.validateNumber365('#numConPrivadas','#numConPrivadas-error') &&
+            this.validateNumber365('#consultasPublicas','#consultasPublicas-error') &&
+            this.validateNumber365('#consultasPrivadas','#consultasPrivadas-error') &&
             this.validateCheckBoxGroup('.saludPublicaCheckbox', '#saludPublica-error') &&
             this.validateCheckBoxGroup('.saludPrivadaCheckbox', '#saludPrivada-error') &&
             this.validateNumberInt('#gastoPublico','#gastoPublico-error') &&
             this.validateNumberInt('#gastoPrivado','#gastoPrivado-error') &&
-            this.validateNumberInt('#numCliPublicas','#numCliPublicas-error') &&
-            this.validateNumberInt('#numCliPrivadas','#numCliPrivadas-error') &&
+            this.validateNumberInt('#clinicasPublicas','#clinicasPublicas-error') &&
+            this.validateNumberInt('#clinicasPrivadas','#clinicasPrivadas-error') &&
             this.validateCheckBoxGroup('.serviciosUsados', '#serviciosUsados-error') &&
             this.validateSelector('#satisfaccionPublica','#satisfaccionPublica-error') &&
             this.validateSelector('#satisfaccionPrivada','#satisfaccionPrivada-error') &&
