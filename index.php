@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UMSS</title>
     <!-- BOOTSTRAP 4 -->
     <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
@@ -17,13 +18,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" role="group" aria-label="NavBar">
-            <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto ">
                 <li class="nav-item active">
-                    <a class="btn btn-secondary mr-2" href="./formulario.php" id="formulario">Formulario</a>
+                    <a class="nav-link" href="./formulario.php" id="formulario">Formulario</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="btn btn-secondary" href="./dashboard.php" id="dashboard">Dashboard</a>
+                    <a class="nav-link" href="./dashboard.php" id="dashboard">Dashboard</a>
                 </li>
             </ul>
         </div>
@@ -58,9 +59,8 @@
     </div>
 
     <!-- Scripts de jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
     <!-- Lógica del Frontend -->
     <script src="./backend/app.js"></script>
