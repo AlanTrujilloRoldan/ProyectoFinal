@@ -57,7 +57,10 @@ class Create extends Database
         );";
 
         if ($this->conexion->query($sql)) {
-            header("Location: ./dashboard.php");
+            $this->response = [
+                'status' => 'Exito',
+                'message' => 'Se pudieron agregar los datos correctamente: ' . $this->conexion->insert_id
+            ];
         } else {
             $this->response = [
                 'status' => 'error',
