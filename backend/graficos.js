@@ -59,3 +59,34 @@ const razones = {
     "Lejanía de su domicilio al hospital, clínica, etc.": 3, 
 }
 
+class graficos {
+
+    constructor() {
+        this.setupEventListeners(); //Se inicializan los metodos que detectan los eventos de los componentes especificados
+    }
+
+    setupEventListeners() {
+        $('#entidades').on('click',() => this.getEntidades());
+    }
+
+    //probando la conexion con la base de datos
+    getEntidades() {
+        
+        $.ajax({
+            url: './backend/data-list.php',
+            type: 'GET',
+            success: function(response) {
+                // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+                const datos = JSON.parse(response);
+            
+                console.log(datos);
+            }
+        });
+    }
+
+}
+
+// Inicializar app
+$(document).ready(() => {
+    new graficos();
+});

@@ -55,7 +55,7 @@
                     </li>
                     <li class="nav-item mb-3">
                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                            <button type="button" class="btn btn-secondary" fdprocessedid="niy6c2">Ent. Federativas</button>
+                            <button type="button" class="btn btn-secondary" fdprocessedid="niy6c2" id="entidades">Ent. Federativas</button>
                             <div class="btn-group" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" fdprocessedid="qwnm8f"></button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
@@ -115,7 +115,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
     <!-- Lógica del Frontend -->
-    <script src="./backend/app.js"></script>
+    <script src="./backend/graficos.js"></script>
 
 </body>
 
