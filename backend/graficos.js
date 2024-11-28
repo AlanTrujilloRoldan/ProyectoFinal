@@ -61,12 +61,17 @@ const razones = {
 
 class graficos {
 
+    static grafico1;
+    static grafico2;
+    static grafico3;
+    static grafico4;
+
     constructor() {
         this.setupEventListeners(); //Se inicializan los metodos que detectan los eventos de los componentes especificados
     }
 
     setupEventListeners() {
-        $('#entidades').on('click',() => this.getEntidades());
+        $('#nacionales').on('click',() => this.getNacional());
 
         // Escuchar clics en los enlaces del dropdown
         $('#submitButton').on('click', () => {
@@ -76,7 +81,7 @@ class graficos {
     }
 
     //probando la conexion con la base de datos
-    getEntidades() {
+    getNacional() {
         
         $.ajax({
             url: './backend/data-list.php',
@@ -86,6 +91,8 @@ class graficos {
                 const datos = JSON.parse(response);
             
                 console.log(datos);
+                console.log(graficos.obtenerEdades(datos));
+                graficos.graficoEdades();
             }
         });
     }
@@ -107,9 +114,125 @@ class graficos {
         $('#estadosSelect').val('').trigger('change'); // Restablecer a la opción por defecto
     }
 
+    static obtenerEdades( objeto ) {
+        let edades = [];
+        
+        // Recorrer el objeto y obtener la edad de cada registro
+        for (const key in objeto) {
+            if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
+                edades.push(objeto[key].edad); // Acceder a la propiedad 'edad'
+            }
+            
+        }
+        return edades;
+    }
+
+    static graficoEdades(edades){
+        const ctx = document.getElementById('grafico1');
+        if (graficos.grafico1) {
+            graficos.grafico1.destroy();
+        }
+        graficos.grafico1 = new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+
+        const ctx2 = document.getElementById('grafico2');
+        if (graficos.grafico2) {
+            graficos.grafico2.destroy();
+        }
+        graficos.grafico2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+
+        const ctx3 = document.getElementById('grafico3');
+        if (graficos.grafico3) {
+            graficos.grafico3.destroy();
+        }
+        graficos.grafico3 = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+
+        const ctx4 = document.getElementById('grafico4');
+        if (graficos.grafico4) {
+            graficos.grafico4.destroy();
+        }
+        graficos.grafico4 = new Chart(ctx4, {
+            type: 'bar',
+            data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+    }
+
 }
 
 // Inicializar app
 $(document).ready(() => {
-    new graficos();
+    const ob =new graficos();
+    graficos.graficoEdades();
 });
