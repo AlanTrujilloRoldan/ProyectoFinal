@@ -207,10 +207,10 @@ class app {
 
     async saveProduct(url, data) {
         const response = await $.ajax({
-          url: url,
-          type: 'POST',
-          data: JSON.stringify(data),
-          contentType: 'application/json'
+            url: url,
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json'
         });
 
         console.log(response);
