@@ -7,12 +7,24 @@
     <title>UMSS</title>
     <!-- BOOTSTRAP 4 -->
     <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+    <style>
+
+        .nav-fixed {
+            position: fixed; /* Fijo en la ventana */
+            width: 120px; /* Ancho fijo para evitar cambios de tamaño */
+            z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+        }
+
+        .content {
+            margin-left: 220px; /* Margen para el contenido principal */
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- BARRA DE NAVEGACIÓN -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <a class="navbar-brand" href=".">UMSS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,30 +42,68 @@
         </div>
     </nav>
 
-    <div class="container-fluid text-white p-5" style="position: relative; background-image: url('./backend/src/bannerUMSS.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-        <div style="position: relative; z-index: 2;">
-            <h1>UMSS</h1>
-            <p class="lead">Un Mejor Sistema De Salud</p>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row p-4">
-            <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
-            <div class="col-12">
-                <h2 class="mt-4">Información de la Página</h2>
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+    <div class="container-fluid bg-primary">
+        <div class="row ">
+            <div class="col-12 col-sm-3">
+                <div class="container bg-danger  mt-5 text-center pb-5">
+                <ul class="nav flex-column ">
+                    <li class="nav-item mb-3">
+                        <button type="button" class="btn btn-success" fdprocessedid="megrkk">Datos Nacionales</button>
+                    </li>
+                    <li class="nav-item mb-3">
+                        <button type="button" class="btn btn-primary" fdprocessedid="megrkk">Más necesitados</button>
+                    </li>
+                    <li class="nav-item mb-3">
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <button type="button" class="btn btn-secondary" fdprocessedid="niy6c2">Ent. Federativas</button>
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" fdprocessedid="qwnm8f"></button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mb-3">
+                        <button type="button" class="btn btn-danger" fdprocessedid="megrkk">Button</button>
+                    </li>
+                    <li class="nav-item ">
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <button type="button" class="btn btn-primary" fdprocessedid="niy6c2">Primary</button>
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" fdprocessedid="qwnm8f"></button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
                 </div>
-                <h2 class="mt-4">Información de la ODS</h2>
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
+            </div>
+            <div class="col-12 col-sm-9">
+                <div class="container bg-success pt-3">
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                    <p>Hola</p>
+                </div>               
             </div>
         </div>
     </div>
