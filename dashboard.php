@@ -20,11 +20,16 @@
             max-height: 80px; /* Ajusta la altura máxima según tus necesidades */
             overflow-y: auto; /* Agrega una barra de desplazamiento vertical */
         }
+
+        .grafico {
+
+            
+            min-height: 170px; /* Establece una altura mínima */
+        }
     </style>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    
 </head>
 
 <body>
@@ -54,7 +59,7 @@
                 <div class="container bg-danger  mt-5 text-center pb-5">
                 <ul class="nav flex-column ">
                     <li class="nav-item mb-4">
-                        <button type="button" class="btn btn-success" fdprocessedid="megrkk">Datos Nacionales</button>
+                        <button type="button" class="btn btn-success" fdprocessedid="megrkk" id="nacionales">Datos Nacionales</button>
                     </li>
                     <li class="nav-item mb-4">
                         <button type="button" class="btn btn-primary" fdprocessedid="megrkk">Más necesitados</button>
@@ -109,25 +114,33 @@
                 </div>
             </div>
             <div class="col-12 col-sm-9">
-                <div class="container bg-success pt-3">
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
-                    <p>Hola</p>
+                <div class="container bg-success pt-3 mt-5">
+                    <div class="row"> <!-- Contenedor de fila para los gráficos -->
+                        <!-- Gráfico 1 -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="container bg-success pt-3">
+                                <canvas id="grafico1" class="grafico"></canvas>
+                            </div>
+                        </div>
+                        <!-- Gráfico 2 -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="container bg-success pt-3">
+                                <canvas id="grafico2" class="grafico"></canvas>
+                            </div>
+                        </div>
+                        <!-- Gráfico 3 -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="container bg-success pt-3">
+                                <canvas id="grafico3" class="grafico"></canvas>
+                            </div>
+                        </div>
+                        <!-- Gráfico 4 -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="container bg-success pt-3">
+                                <canvas id="grafico4" class="grafico"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>               
             </div>
         </div>
@@ -141,6 +154,7 @@
 
     <!-- Lógica del Frontend -->
     <script src="./backend/graficos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 
