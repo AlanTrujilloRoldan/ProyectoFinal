@@ -110,6 +110,13 @@ class app {
         $('#medicamentosDificultad').on('blur', () => this.validateRadioButtonGroup('input[name="medicamentos"]', '#medicamentosDificultad-error'));
         $('#mejoras').on('blur', () => this.validateCheckBoxGroup('.mejorasCheckbox', '#mejoras-error'));
 
+        // VALIDAR CARACTERES PERMITIDOS
+        $('#consultasPublicas').on("keypress",  (e) => this.valNumNa(e));
+        $('#consultasPrivadas').on("keypress",  (e) => this.valNumNa(e));
+        $('#gastoPublico').on("keypress", (e) => this.valNumRa(e));
+        $('#gastoPrivado').on("keypress",  (e) => this.valNumRa(e));
+        $('#clinicasPrivadas').on("keypress", (e) => this.valNumNa(e));
+        $('#clinicasPublicas').on("keypress", (e) => this.valNumNa(e));
     }
 
     async convertirMayusculas() {
@@ -243,6 +250,7 @@ class app {
         const curpPattern = /^([A-Z]{4})(\d{6})([HM]{1})([A-Z]{2})([A-Z]{4})(\d{1})$/i;
         $('#curp-error').hide();
         if (!curpInput || !curpPattern.test(curpInput)) {
+            $('#curp').val('');
             $('#curp-error').text('Ingresa un CURP válido').show();
             return false;
         }
@@ -254,6 +262,7 @@ class app {
         const edad = parseInt(edadInput, 10);
         $('#edad-error').hide();
         if (!edadInput || isNaN(edad) || edad < 0 || edad > 99) {
+            $('#edad').val('');
             $('#edad-error').text('Ingresa una edad valida').show();
             return false;
         }
@@ -288,6 +297,7 @@ class app {
         const number = parseInt(numberInput, 10);
         $(errorSelector).hide();
         if (!numberInput || isNaN(number) || number < 0 || number > 365 || !Number.isInteger(number)) {
+            $(selector).val('');
             $(errorSelector).text('Ingresa un número válido').show();
             return false;
         }
@@ -300,6 +310,7 @@ class app {
 
         $(errorSelector).hide();
         if (!numberInput || number < 0 || !Number.isInteger(number)) {
+            $(selector).val('');
             $(errorSelector).text('Ingresa un número válido').show();
             return false;
         }
@@ -311,6 +322,7 @@ class app {
         $(errorSelector).hide();
 
         if (!numberInput || isNaN(numberInput) || numberInput < 0) {
+            $(selector).val('');
             $(errorSelector).text('Ingresa un número válido').show();
             return false;
         }
@@ -326,6 +338,26 @@ class app {
             return false;
         }
         return true;
+    }
+
+    valNumRa(e){
+        console.log(e);
+        var code = e.which;
+        console.log(code)
+        if(code>=48 && code<=57)
+            return true;
+        else if(code == 46)
+            return true;
+        else
+            return false;
+    }
+    
+    valNumNa(e){
+        var code = e.which;
+        if(code>=48 && code<=57)
+            return true;
+        else
+            return false;
     }
 }
 
