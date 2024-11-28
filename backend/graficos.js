@@ -67,6 +67,12 @@ class graficos {
 
     setupEventListeners() {
         $('#entidades').on('click',() => this.getEntidades());
+
+        // Escuchar clics en los enlaces del dropdown
+        $('#submitButton').on('click', () => {
+            const estado = $('#estadosSelect').val();
+            this.datosEstadoEspecifico(estado);
+        });
     }
 
     //probando la conexion con la base de datos
@@ -82,6 +88,23 @@ class graficos {
                 console.log(datos);
             }
         });
+    }
+
+    datosEstadoEspecifico(value) {
+        if (value === null) {
+            console.log("No se ha seleccionado ningún valor");
+            return;
+        }
+        $.ajax({
+            url: './backend/data-search.php',
+            data: {estado: value},
+            type: 'GET',
+            success: function (response) {
+                const datos = JSON.parse(response);
+                console.log(datos);
+            }
+        });
+        $('#estadosSelect').val('').trigger('change'); // Restablecer a la opción por defecto
     }
 
 }
