@@ -127,8 +127,8 @@
                     </div>
                     <div class="row"> <!-- Contenedor de fila para los gráficos -->
                         <!-- Gráfico 1 -->
-                        <div class="col-12 col-md-6 mb-3">
-                            <div class="grafico bg-light pt-3">
+                        <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
+                            <div class="grafico bg-light pt-3 d-flex align-items-center justify-content-center">
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>

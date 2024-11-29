@@ -69,6 +69,10 @@ class graficos {
         "labels": [],
         "data": []
     }
+    static graf2Param = {
+        "labels": [],
+        "data": []
+    }
 
     constructor() {
         this.setupEventListeners(); //Se inicializan los metodos que detectan los eventos de los componentes especificados
@@ -96,6 +100,7 @@ class graficos {
             
                 console.log(datos);
                 console.log(graficos.obtenerEdades(datos));
+                console.log(graficos.obtenerProblemas(datos));
                 graficos.graficoEdades();
                 $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
@@ -114,6 +119,7 @@ class graficos {
             success: function (response) {
                 const datos = JSON.parse(response);
                 console.log(graficos.obtenerEdades(datos));
+                console.log(graficos.obtenerProblemas(datos));
                 console.log(datos);
                 graficos.graficoEdades();
             }
@@ -149,6 +155,37 @@ class graficos {
         return edades;
     }
 
+    static obtenerProblemas(objeto){
+        let problemas = [];
+        
+        // Recorrer el objeto y obtener la edad de cada registro
+        for (const key in objeto) {
+            if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
+                problemas.push(Number(objeto[key].problemasSalud)); // Acceder a la propiedad 'edad'
+            }
+            
+        }
+
+        const conteo = {
+            'Ceros': 0,
+            'Unos': 0
+        };
+
+        problemas.forEach(valor => {
+            if (valor === 0) {
+                conteo['Ceros']++;
+            } else if (valor === 1) {
+                conteo['Unos']++;
+            }
+        });
+
+        // Convertir el objeto a arreglos para Chart.js
+        graficos.graf2Param.labels = Object.keys(conteo);
+        graficos.graf2Param.data = Object.values(conteo);
+        console.log(graficos.graf2Param.data + ' aqui');
+        return problemas;
+    }
+
     static graficoEdades(edades){
         const ctx = document.getElementById('grafico1');
         if (graficos.grafico1) {
@@ -181,12 +218,12 @@ class graficos {
             graficos.grafico2.destroy();
         }
         graficos.grafico2 = new Chart(ctx2, {
-            type: 'bar',
+            type: 'pie',
             data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ["Publico", "Privado"],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: 'Servicio al que acude',
+                data: graficos.graf2Param.data, //frecuencia
                 borderWidth: 1
             }]
             },
