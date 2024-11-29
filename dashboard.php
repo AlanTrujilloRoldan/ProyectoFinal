@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -119,10 +119,16 @@
             </div>
             <div class="col-12 col-sm-9">
                 <div class="container bg-success pt-3 mt-5">
+                    <div class="row">
+                        <div class="col-12 text-center ">
+                            <h1 class="badge-secondary rounded" id="titulo">Estadísticas</h1>
+                            <h2 class="badge-primary rounded" id="tipoEstadisticas">Hola</h2>
+                        </div>
+                    </div>
                     <div class="row"> <!-- Contenedor de fila para los gráficos -->
                         <!-- Gráfico 1 -->
-                        <div class="col-12 col-md-6 mb-3">
-                            <div class="grafico bg-light pt-3">
+                        <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
+                            <div class="grafico bg-light pt-3 d-flex align-items-center justify-content-center">
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>
@@ -140,6 +146,7 @@
                         </div>
                         <!-- Gráfico 4 -->
                         <div class="col-12 col-md-6 mb-3">
+                            
                             <div class="grafico bg-light pt-3">
                                 <canvas id="grafico4" class=""></canvas>
                             </div>
