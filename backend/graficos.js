@@ -235,4 +235,8 @@ class graficos {
 $(document).ready(() => {
     const ob =new graficos();
     graficos.graficoEdades();
+
+    $(window).resize(function() {
+        graficos.graficoEdades();
+    });
 });
