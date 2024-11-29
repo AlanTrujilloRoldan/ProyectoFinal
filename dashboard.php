@@ -129,19 +129,19 @@
                         <!-- Gráfico 2 -->
                         <div class="col-12 col-md-6 mb-3">
                             <div class="grafico bg-light pt-3">
-                                <canvas id="grafico2" class="grafico"></canvas>
+                                <canvas id="grafico2" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 3 -->
                         <div class="col-12 col-md-6 mb-3">
                             <div class="grafico bg-light pt-3">
-                                <canvas id="grafico3" class="grafico"></canvas>
+                                <canvas id="grafico3" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 4 -->
                         <div class="col-12 col-md-6 mb-3">
                             <div class="grafico bg-light pt-3">
-                                <canvas id="grafico4" class="grafico"></canvas>
+                                <canvas id="grafico4" class=""></canvas>
                             </div>
                         </div>
                     </div>
