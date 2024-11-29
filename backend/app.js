@@ -56,7 +56,7 @@ const frecuencia = {
 const razones = {
     "Problema económico": 1,
     "Falta de tiempo": 2,
-    "Lejanía de su domicilio al hospital, clínica, etc.": 3, 
+    "Lejanía": 3, 
 }
 
 class app {

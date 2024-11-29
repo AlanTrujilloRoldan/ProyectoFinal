@@ -65,6 +65,10 @@ class graficos {
     static grafico2;
     static grafico3;
     static grafico4;
+    static graf1Param = {
+        "labels": [],
+        "data": []
+    }
 
     constructor() {
         this.setupEventListeners(); //Se inicializan los metodos que detectan los eventos de los componentes especificados
@@ -93,6 +97,7 @@ class graficos {
                 console.log(datos);
                 console.log(graficos.obtenerEdades(datos));
                 graficos.graficoEdades();
+                $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
         });
     }
@@ -108,9 +113,13 @@ class graficos {
             type: 'GET',
             success: function (response) {
                 const datos = JSON.parse(response);
+                console.log(graficos.obtenerEdades(datos));
                 console.log(datos);
+                graficos.graficoEdades();
             }
         });
+        let estado = getEstadoPorValor(Number(value));    
+        $('#tipoEstadisticas').text(`Estadísticas de ${estado}`); // Cambiar el titulo de las estadísticas que se muestran
         $('#estadosSelect').val('').trigger('change'); // Restablecer a la opción por defecto
     }
 
@@ -124,6 +133,19 @@ class graficos {
             }
             
         }
+        const grupos = Array(10).fill(0); // Para grupos de 10 años
+
+        // Agrupar las edades
+        edades.forEach(edad => {
+            if (edad >= 0 && edad <= 99) {
+                const grupoIndex = Math.floor(edad / 10);
+                grupos[grupoIndex]++;
+            }
+        });
+
+        // Convertir el objeto a arreglos para Chart.js
+        graficos.graf1Param.labels = grupos.map((_, index) => `${index * 10}-${index * 10 + 9}`);
+        graficos.graf1Param.data = grupos;
         return edades;
     }
 
@@ -135,11 +157,12 @@ class graficos {
         graficos.grafico1 = new Chart(ctx, {
             type: 'bar',
             data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels:  graficos.graf1Param.labels , //edades
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
+                label: 'Frecuencia edades',
+                data:  graficos.graf1Param.data, //frecuencia
+                borderWidth: 1,
+                borderColor: 'rgba(255, 99, 132, 1)'
             }]
             },
             options: {
@@ -230,10 +253,15 @@ class graficos {
     }
 
 }
+console.log(getEstadoPorValor(1));
+function getEstadoPorValor(valor) {
+    return Object.keys(estados).find(key => estados[key] === valor);
+}
 
 // Inicializar app
 $(document).ready(() => {
     const ob =new graficos();
+    ob.getNacional();
     graficos.graficoEdades();
 
     $(window).resize(function() {
