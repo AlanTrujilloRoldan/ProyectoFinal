@@ -8,7 +8,7 @@ abstract class database {
 
     // Constructor para establecer la conexión a la base de datos
     public function __construct($db,$user,$pass) {
-        $this->conexion = new \mysqli('localhost', 'root', 'cursodbAPO11?', 'umss');
+        $this->conexion = new \mysqli('localhost', 'root', 'Z#~W2xwamQ69jQq', 'umss');
         if ($this->conexion->connect_error) {
             die("Connection failed: " . $this->conexion->connect_error);
         }

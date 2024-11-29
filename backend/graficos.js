@@ -74,6 +74,26 @@ class graficos {
         "data": []
     }
 
+    static graf3Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf4Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf5Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf6Param = {
+        "labels": [],
+        "data": []
+    }
+
     constructor() {
         this.setupEventListeners(); //Se inicializan los metodos que detectan los eventos de los componentes especificados
     }
@@ -100,7 +120,17 @@ class graficos {
             
                 console.log(datos);
                 console.log(graficos.obtenerEdades(datos));
-                console.log(graficos.obtenerProblemas(datos));
+                //console.log(graficos.obtenerProblemas(datos));
+                console.log(graficos.obtenerSiONo(datos, "problemasSalud", graficos.graf2Param))
+                console.log(graficos.obtenerSiONo(datos, "mejorServicio", graficos.graf3Param))
+                console.log(graficos.obtenerSiONo(datos, "afiliacionSalud", graficos.graf4Param))
+                console.log(graficos.obtenerSiONo(datos, "seguroGastos", graficos.graf5Param))
+                console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param))
+
+
+
+                graficos.graf1Param
+
                 graficos.graficoEdades();
                 $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
@@ -119,7 +149,9 @@ class graficos {
             success: function (response) {
                 const datos = JSON.parse(response);
                 console.log(graficos.obtenerEdades(datos));
+
                 console.log(graficos.obtenerProblemas(datos));
+
                 console.log(datos);
                 graficos.graficoEdades();
             }
@@ -145,6 +177,7 @@ class graficos {
         edades.forEach(edad => {
             if (edad >= 0 && edad <= 99) {
                 const grupoIndex = Math.floor(edad / 10);
+                console.log(grupoIndex);
                 grupos[grupoIndex]++;
             }
         });
@@ -172,7 +205,7 @@ class graficos {
         };
 
         problemas.forEach(valor => {
-            if (valor === 0) {
+            if (parseInt(valor) === 0) {
                 conteo['Ceros']++;
             } else if (valor === 1) {
                 conteo['Unos']++;
@@ -185,6 +218,40 @@ class graficos {
         console.log(graficos.graf2Param.data + ' aqui');
         return problemas;
     }
+
+    static obtenerSiONo(objeto, label, grafico){
+        let lista = [];
+        
+        // Recorrer el objeto y obtener la edad de cada registro
+        for (const key in objeto) {
+            if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
+                lista.push(Number(objeto[key][label])); // Acceder a la propiedad 'edad'
+            }
+            
+        }
+
+        const conteo = {
+            'Ceros': 0,
+            'Unos': 0
+        };
+
+        lista.forEach(valor => {
+            if (valor === 0) {
+                conteo['Ceros']++;
+            } else if (valor === 1) {
+                conteo['Unos']++;
+            }
+        });
+
+        grafico.labels= Object.keys(conteo);
+        grafico.data = Object.values(conteo);
+        console.log(grafico.data + ' aqui' + label);
+
+        return lista;
+    }
+
+
+
 
     static graficoEdades(edades){
         const ctx = document.getElementById('grafico1');
@@ -243,12 +310,12 @@ class graficos {
             graficos.grafico3.destroy();
         }
         graficos.grafico3 = new Chart(ctx3, {
-            type: 'bar',
+            type: 'pie',
             data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ["Publico", "Privado"],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: 'Sistema que ofrece el mejor servicio',
+                data: graficos.graf3Param.data, //frecuencia
                 borderWidth: 1
             }]
             },
@@ -268,12 +335,62 @@ class graficos {
             graficos.grafico4.destroy();
         }
         graficos.grafico4 = new Chart(ctx4, {
-            type: 'bar',
+            type: 'pie',
             data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ["Si", "No"],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: '¿Cuenta con afiliación a un servicio de salud?',
+                data: graficos.graf4Param.data, //frecuencia
+                borderWidth: 1
+            }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+
+        const ctx5 = document.getElementById('grafico5');
+        if (graficos.grafico5) {
+            graficos.grafico5.destroy();
+        }
+        graficos.grafico5 = new Chart(ctx5, {
+            type: 'pie',
+            data: {
+            labels: ["Si", "No"],
+            datasets: [{
+                label: '¿Cuenta con seguro gastos mayores?',
+                data: graficos.graf5Param.data, //frecuencia
+                borderWidth: 1
+            }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+
+        const ctx6 = document.getElementById('grafico6');
+        if (graficos.grafico6) {
+            graficos.grafico6.destroy();
+        }
+        graficos.grafico6 = new Chart(ctx6, {
+            type: 'pie',
+            data: {
+            labels: ["Si", "No"],
+            datasets: [{
+                label: '¿Ha tenido dificultades para obtener medicamentos recetados?',
+                data: graficos.graf6Param.data, //frecuencia
                 borderWidth: 1
             }]
             },

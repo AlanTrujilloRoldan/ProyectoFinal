@@ -151,6 +151,22 @@
                                 <canvas id="grafico4" class=""></canvas>
                             </div>
                         </div>
+
+                        <!-- Gráfico 5 -->
+                        <div class="col-12 col-md-6 mb-3">
+                            
+                            <div class="grafico bg-light pt-3">
+                                <canvas id="grafico5" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 6-->
+                        <div class="col-12 col-md-6 mb-3">
+                            
+                            <div class="grafico bg-light pt-3">
+                                <canvas id="grafico6" class=""></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>               
             </div>
