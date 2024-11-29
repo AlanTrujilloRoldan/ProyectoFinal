@@ -23,9 +23,13 @@
 
         .grafico {
 
-            
+            width: 99% !important; 
+            height: auto !important;
             min-height: 170px; /* Establece una altura mínima */
+            max-width: 100%; /* Ensure the width does not exceed the container */
         }
+
+        
     </style>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
@@ -118,26 +122,26 @@
                     <div class="row"> <!-- Contenedor de fila para los gráficos -->
                         <!-- Gráfico 1 -->
                         <div class="col-12 col-md-6 mb-3">
-                            <div class="container bg-success pt-3">
-                                <canvas id="grafico1" class="grafico"></canvas>
+                            <div class="grafico bg-light pt-3">
+                                <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 2 -->
                         <div class="col-12 col-md-6 mb-3">
-                            <div class="container bg-success pt-3">
-                                <canvas id="grafico2" class="grafico"></canvas>
+                            <div class="grafico bg-light pt-3">
+                                <canvas id="grafico2" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 3 -->
                         <div class="col-12 col-md-6 mb-3">
-                            <div class="container bg-success pt-3">
-                                <canvas id="grafico3" class="grafico"></canvas>
+                            <div class="grafico bg-light pt-3">
+                                <canvas id="grafico3" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 4 -->
                         <div class="col-12 col-md-6 mb-3">
-                            <div class="container bg-success pt-3">
-                                <canvas id="grafico4" class="grafico"></canvas>
+                            <div class="grafico bg-light pt-3">
+                                <canvas id="grafico4" class=""></canvas>
                             </div>
                         </div>
                     </div>
