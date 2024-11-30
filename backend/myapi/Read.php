@@ -38,6 +38,7 @@ class Read extends Database{
         } else {
             $data['status'] =  "Error";
             $data['message'] =  "Error al recuperar los datos";
+            $this->data = json_encode($data, JSON_PRETTY_PRINT);
             die('Query Error: '.mysqli_error($this->conexion));
         }
         $this->conexion->close();
@@ -70,6 +71,7 @@ class Read extends Database{
         } else {
             $data['status'] =  "Error";
             $data['message'] =  "Error al recuperar los datos";
+            $this->data = json_encode($data, JSON_PRETTY_PRINT);
             die('Query Error: '.mysqli_error($this->conexion));
         }
         $this->conexion->close();

@@ -74,6 +74,26 @@ class graficos {
         "data": []
     }
 
+    static graf3Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf4Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf5Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf6Param = {
+        "labels": [],
+        "data": []
+    }
+
     constructor() {
         this.setupEventListeners(); //Se inicializan los metodos que detectan los eventos de los componentes especificados
     }
@@ -100,7 +120,12 @@ class graficos {
             
                 console.log(datos);
                 console.log(graficos.obtenerEdades(datos));
-                console.log(graficos.obtenerProblemas(datos));
+                //console.log(graficos.obtenerProblemas(datos));
+                console.log(graficos.obtenerSiONo(datos, "problemasSalud", graficos.graf2Param))
+                console.log(graficos.obtenerSiONo(datos, "mejorServicio", graficos.graf3Param))
+                console.log(graficos.obtenerSiONo(datos, "afiliacionSalud", graficos.graf4Param))
+                console.log(graficos.obtenerSiONo(datos, "seguroGastos", graficos.graf5Param))
+                console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param))
                 graficos.graficoEdades();
                 $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
@@ -155,6 +180,37 @@ class graficos {
         return edades;
     }
 
+    static obtenerSiONo(objeto, label, grafico){
+        let lista = [];
+
+        // Recorrer el objeto y obtener la edad de cada registro
+        for (const key in objeto) {
+            if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
+                lista.push(Number(objeto[key][label])); // Acceder a la propiedad 'edad'
+            }
+
+        }
+
+        const conteo = {
+            'Ceros': 0,
+            'Unos': 0
+        };
+
+        lista.forEach(valor => {
+            if (valor === 0) {
+                conteo['Ceros']++;
+            } else if (valor === 1) {
+                conteo['Unos']++;
+            }
+        });
+
+        grafico.labels= Object.keys(conteo);
+        grafico.data = Object.values(conteo);
+        console.log(grafico.data + ' aqui' + label);
+
+        return lista;
+    }
+
     static obtenerProblemas(objeto){
         let problemas = [];
         
@@ -205,11 +261,23 @@ class graficos {
             options: {
                 responsive: true,
                 maintainAspectRatio: true, // Mantiene la relación de aspecto
-            scales: {
-                y: {
-                beginAtZero: true
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Edades de las personas encuestadas', // Título del gráfico
+                        font: {
+                            size: 14 // Tamaño de la fuente del título
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
-            }
             }
         });
 
@@ -227,14 +295,23 @@ class graficos {
                 borderWidth: 1
             }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true, // Mantiene la relación de aspecto
-            scales: {
-                y: {
-                beginAtZero: true
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true, // Mantiene la relación de aspecto
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Servicio al que Acude', // Título del gráfico
+                            font: {
+                                size: 14 // Tamaño de la fuente del título
+                            }
+                        }
+                    },
+                    scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
-            }
             }
         });
 
@@ -243,23 +320,32 @@ class graficos {
             graficos.grafico3.destroy();
         }
         graficos.grafico3 = new Chart(ctx3, {
-            type: 'bar',
+            type: 'pie',
             data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ["Publico", "Privado"],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: 'Mejor servicio',
+                data: graficos.graf3Param.data,
                 borderWidth: 1
             }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: true, // Mantiene la relación de aspecto
-            scales: {
-                y: {
-                beginAtZero: true
+                plugins: {
+                    title: {
+                        display: true,
+                        text: ' Mejor servicio', // Título del gráfico
+                        font: {
+                            size: 14 // Tamaño de la fuente del título
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
-            }
             }
         });
 
@@ -268,23 +354,32 @@ class graficos {
             graficos.grafico4.destroy();
         }
         graficos.grafico4 = new Chart(ctx4, {
-            type: 'bar',
+            type: 'pie',
             data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ["Si", "No"],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: 'Afiliacion',
+                data: graficos.graf4Param.data,
                 borderWidth: 1
             }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: true, // Mantiene la relación de aspecto
-            scales: {
-                y: {
-                beginAtZero: true
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '¿Afiliación a un servicio de salud?', // Título del gráfico
+                        font: {
+                            size: 14 // Tamaño de la fuente del título
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
-            }
             }
         });
     }
