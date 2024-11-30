@@ -112,7 +112,7 @@ class graficos {
     getNacional() {
         
         $.ajax({
-            url: './backend/data-list.php',
+            url: './backend/list',
             type: 'GET',
             success: function(response) {
                 // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
@@ -138,7 +138,7 @@ class graficos {
             return;
         }
         $.ajax({
-            url: './backend/data-search.php',
+            url: './backend/listarEstado',
             data: {estado: value},
             type: 'GET',
             success: function (response) {

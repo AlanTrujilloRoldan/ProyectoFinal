@@ -202,7 +202,7 @@ class app {
             otroMejoras:this.handleNegChecked('#otroMejoras')
         };
 
-        this.saveProduct('./backend/data-add.php', peopleData);
+        this.saveProduct('./backend/add', peopleData);
     }
 
     async saveProduct(url, data) {

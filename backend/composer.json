@@ -5,5 +5,8 @@
         "psr-4": {
             "myapi\\": "myapi/"
         }
+    },
+    "require": {
+        "slim/slim": "3.0"
     }
 }
