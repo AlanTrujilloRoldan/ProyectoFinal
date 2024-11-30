@@ -1,10 +1,10 @@
 <?php
 
-namespace UMSS\BACKEND\Create;
+namespace myapi;
 
-require_once __DIR__ ."../../database.php";
+require_once "database.php";
 
-use UMSS\BACKEND\Database\Database;
+use myapi\Database;
 
 class Create extends Database{
 

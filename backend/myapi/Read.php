@@ -1,10 +1,10 @@
 <?php
 
-namespace UMSS\BACKEND;
+namespace myapi;
 
 require_once  "database.php";
 
-use UMSS\BACKEND\Database\Database;
+use myapi\Database;
 
 class Read extends Database{
 

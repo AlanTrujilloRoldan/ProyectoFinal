@@ -1,6 +1,6 @@
 <?php
 
-namespace UMSS\BACKEND\Database;
+namespace myapi;
 
 abstract class database {
     protected $conexion;

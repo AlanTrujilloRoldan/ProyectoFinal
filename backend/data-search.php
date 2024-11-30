@@ -1,9 +1,8 @@
 <?php
 
-    require_once __DIR__ . '/myapi/database.php';
-    require_once __DIR__ . '/../backend/myapi/Read.php';
+    require_once 'vendor/autoload.php';
 
-    use UMSS\BACKEND\Read;
+    use myapi\Read;
 
     // Crear una instancia de la clase Data
     $dataApp = new Read('umss');

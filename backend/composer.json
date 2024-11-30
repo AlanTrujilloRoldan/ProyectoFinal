@@ -1,0 +1,9 @@
+{
+    "name": "myapi/umss",
+    "description": "My API para el proyecto de desarrollo web",
+    "autoload":{
+        "psr-4": {
+            "myapi\\": "myapi/"
+        }
+    }
+}

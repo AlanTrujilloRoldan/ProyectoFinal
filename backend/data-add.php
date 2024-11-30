@@ -1,8 +1,7 @@
 <?php
-require_once __DIR__ . '/myapi/database.php';
-require_once __DIR__ . '/../backend/myapi/Create/Create.php';
+require_once 'vendor/autoload.php';
 
-use UMSS\BACKEND\Create\Create;
+use myapi\Create;
 
 // Crear una instancia de la clase Data
 $dataApp = new Create('umss');
