@@ -59,7 +59,7 @@
 
     <div class="container-fluid bg-primary">
         <div class="row ">
-            <div class="col-12 col-sm-3">
+            <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center">
                 <div class="container bg-danger  mt-5 text-center pb-5">
                 <ul class="nav flex-column ">
                     <li class="nav-item mb-4">
@@ -73,7 +73,7 @@
                         <div class="form-group ">
                             <label class="badge-pill badge-secondary" for="estadosSelect">Selecciona un Estado:</label>
                             <select class="form-control form-select" id="estadosSelect">
-                                <option value="" selected disabled>Selecciona un estado</option>
+                                <option value="" selected disabled>Seleccionar</option>
                                 <option value="1">Aguascalientes</option>
                                 <option value="2">Baja California</option>
                                 <option value="3">Baja California Sur</option>
@@ -125,28 +125,28 @@
                             <h2 class="badge-primary rounded" id="tipoEstadisticas">Hola</h2>
                         </div>
                     </div>
-                    <div class="row"> <!-- Contenedor de fila para los gráficos -->
+                    
+                    <div class="row d-flex align-items-center justify-content-center"> <!-- Contenedor de fila para los gráficos -->
                         <!-- Gráfico 1 -->
                         <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
-                            <div class="grafico bg-light pt-3 d-flex align-items-center justify-content-center">
+                            <div class="grafico bg-light pt-3 ">
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 2 -->
-                        <div class="col-12 col-md-6 mb-3">
+                        <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">
                             <div class="grafico bg-light pt-3">
                                 <canvas id="grafico2" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 3 -->
-                        <div class="col-12 col-md-6 mb-3">
+                        <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">
                             <div class="grafico bg-light pt-3">
                                 <canvas id="grafico3" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 4 -->
-                        <div class="col-12 col-md-6 mb-3">
-                            
+                        <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
                             <div class="grafico bg-light pt-3">
                                 <canvas id="grafico4" class=""></canvas>
                             </div>
