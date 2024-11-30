@@ -8,7 +8,6 @@ use UMSS\BACKEND\Database\Database;
 
 class Read extends Database{
 
-    private $data;
 
     public function __construct($db, $user = 'root', $pass = 'cursodbAPO11?'){
         parent::__construct($db, $user, $pass);
@@ -80,7 +79,4 @@ class Read extends Database{
         $this->data = json_encode($data, JSON_PRETTY_PRINT);
     }
 
-    public function getData(){
-        return $this->data;
-    }
 }

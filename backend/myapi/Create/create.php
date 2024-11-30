@@ -6,29 +6,32 @@ require_once __DIR__ ."../../database.php";
 
 use UMSS\BACKEND\Database\Database;
 
-class Create extends Database
-{
-    public function __construct($db, $user = 'root', $pass = '12345678a')
-    {
+class Create extends Database{
+
+
+    public function __construct($db, $user = 'root', $pass = '12345678a'){
         parent::__construct($db, $user, $pass);
     }
 
     // Métodos como add, delete, edit, etc.
-    public function add($peopleData)
-    {
+    public function add($peopleData){
+        // SE TRANSFORMA EL POST A UN STRING EN JSON, Y LUEGO A OBJETO
+        $peopleData = json_decode(json_encode($peopleData), false);
+
         // Verificar si ya existe un registro con la misma CURP
         $curp = $peopleData->curp;
         $sqlCheck = "SELECT COUNT(*) AS total FROM `datosformulario` WHERE `curp` = '$curp'";
         $result = $this->conexion->query($sqlCheck);
 
         if ($result) {
-            $data = $result->fetch_assoc();
-            if ($data['total'] > 0) {
-                $this->response = [
+            $registros = $result->fetch_assoc();
+            if ($registros['total'] > 0) {
+                $this->data = [
                     'status' => 'error',
                     'message' => 'Ya existe un registro con esta CURP.'
                 ];
-                return $this->response;
+                $this->data = json_encode($data, JSON_PRETTY_PRINT);
+                return;
             }
         }
 
@@ -57,17 +60,17 @@ class Create extends Database
         );";
 
         if ($this->conexion->query($sql)) {
-            $this->response = [
+            $this->data = [
                 'status' => 'Exito',
                 'message' => 'Se pudieron agregar los datos correctamente: ' . $this->conexion->insert_id
             ];
         } else {
-            $this->response = [
+            $this->data = [
                 'status' => 'error',
                 'message' => 'No se pudieron agregar los datos: ' . mysqli_error($this->conexion)
             ];
         }
 
-        return $this->response;
+        $this->data = json_encode($this->data, JSON_PRETTY_PRINT);
     }
 }

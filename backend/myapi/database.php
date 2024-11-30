@@ -4,7 +4,7 @@ namespace UMSS\BACKEND\Database;
 
 abstract class database {
     protected $conexion;
-    protected $response = [];
+    protected $data;
 
     // Constructor para establecer la conexión a la base de datos
     public function __construct($db,$user,$pass) {
@@ -15,8 +15,8 @@ abstract class database {
     }
 
     // Método para obtener la respuesta como un JSON
-    public function getData() {
-        return json_encode($this->response, JSON_PRETTY_PRINT);
+    public function getData(){
+        return $this->data;
     }
 
     // Método para cerrar la conexión
