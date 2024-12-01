@@ -38,7 +38,7 @@
 <body>
 
     <!-- BARRA DE NAVEGACIÓN -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href=".">UMSS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -56,7 +56,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid bg-primary">
+    <div class="container-fluid bg-primary" style="margin-top:30px;">
         <div class="row ">
             <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center">
                 <div class="container bg-danger  mt-5 text-center pb-5">
@@ -129,37 +129,42 @@
                         <!-- Gráfico 1 barras -->
                         <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
                             <div class="grafico bg-light pt-3 ">
-                                <h4 class="text-center">Etiqueta titulo edades grafico</h4> //Seguramente sea mejor poner los titulos de esta forma
+                                <h4 class="text-center" >Edades personas encuestadas</h4> <!-- Seguramente sea mejor poner los titulos de esta forma -->
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 7 barras -->
                         <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
                             <div class="grafico bg-light pt-3 ">
+                                <h4 class="text-center">Usos servicios de salud</h4>
                                 <canvas id="grafico7" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 2 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">
                             <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Servicio al que acude</h4>
                                 <canvas id="grafico2" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 3 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">
                             <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Mejor servicio</h4>
                                 <canvas id="grafico3" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 4 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
                             <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">¿Afiliación a un servicio de salud?</h4>
                                 <canvas id="grafico4" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 5 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
                             <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">¿Cuenta con seguro de gastos mayores?</h4>
                                 <canvas id="grafico5" class=""></canvas>
                             </div>
                         </div>
@@ -167,6 +172,7 @@
                         <!-- Gráfico 6 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
                             <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">¿Dificultad en la obtención de medicamentos?</h4>
                                 <canvas id="grafico6" class=""></canvas>
                             </div>
                         </div>
