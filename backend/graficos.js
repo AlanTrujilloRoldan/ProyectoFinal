@@ -47,8 +47,10 @@ class graficos {
     static grafico10; //grafico de pastel con mas de dos opciones, de las razones para consultas privadas
     static grafico11; //grafico de barras dobles de los gastos de servicios de salud publica
     static grafico12; //grafico de barras dobles de los gastos de servicios de salud privada
-    static grafico13; //grafico de pastel con mas de dos opciones, de los establecimientos de salud pública en la localidad
-    static grafico14; //grafico de pastel con mas de dos opciones, de los establecimientos de salud privada en la localidad
+    static grafico13; //grafico de barras dobles, de los establecimientos de salud pública en la localidad
+    static grafico14; //grafico de barras dobles, de los establecimientos de salud privada en la localidad
+    static grafico15; //grafico de pastel con mas de dos opciones, de los usos de los servicios de salud usados
+    static grafico16; //grafico de pastel para las opciones almacenadas en el select de satisfaccion con el servicio de salud publico
 
     static graf1Param = {
         "labels": [],
@@ -122,6 +124,16 @@ class graficos {
         "data": []
     }
 
+    static graf15Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf16Param = {
+        "labels": [],
+        "data": []
+    }
+
     constructor() {
         this.setupEventListeners(); //Se inicializan los metodos que detectan los eventos de los componentes especificados
     }
@@ -161,6 +173,8 @@ class graficos {
                 console.log(graficos.obtenerGruposConLimite(datos, "gastoPrivado",graficos.graf12Param, 20000, 5, 5000));
                 console.log(graficos.obtenerGruposConLimite(datos, "clinicasPublicas",graficos.graf13Param, 5, 6, 1));
                 console.log(graficos.obtenerGruposConLimite(datos, "clinicasPrivadas",graficos.graf14Param, 5, 6, 1));
+                console.log(graficos.obtenerGruposCheckBox(datos, ["IMSS", "ISSSTE", "farmaciasSimilares", "cruzRoja", "hospitalesGenerales", "hospitalesPrivados", "otrosServicios"], graficos.graf15Param, ["IMSS", "ISSSTE", "Farmacias Similares", "Cruz Roja", "Hosp. Generales", "Hosp. Privados", "Otros"]));
+                console.log(graficos.obtenerGruposSelect(datos,"satisfaccionPublica", graficos.graf16Param, ["Muy satisfecho", "Satisfecho", "Insatisfecho", "Muy insatisfecho"]));
                 graficos.graficoEdades();
                 $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
@@ -198,20 +212,43 @@ class graficos {
         $('#estadosSelect').val('').trigger('change'); // Restablecer a la opción por defecto
     }
 
+    static obtenerGruposSelect( objeto, label, grafico, etiquetas ){
+        let recuento = [];
+        let lista = [];
+        
+        // Recorrer el objeto y obtener los datos especificos de cada registro
+        
+        for (const key in objeto) {
+            if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
+                lista.push(Number(objeto[key][label])); // Acceder a la propiedad deseada
+            }
+        }
+        for(let i = 0; i < etiquetas.length; i++){
+            recuento[i] = lista.filter( valor => valor == (i + 1)).length; // Contar cuantas veces se repite un valor en la lista, el filter regresa solo a los valore de la lista que sean iguales a i, y con length
+            //se obtiene la cantidad elementos en esa lista filtrada
+            //Lo del i + 1 es porque los valores de la lista son del 1 al 4, pero los indices de los arreglos empiezan en 0, entonces se le suma 1 para que coincidan
+        }
+
+        // Convertir el objeto a arreglos para Chart.js
+        grafico.labels = etiquetas;
+        grafico.data = recuento;
+        console.log(grafico.data + ' SELECT ' + etiquetas + " metodo de select " + recuento);
+        return recuento;
+    }
+
     static obtenerGruposCheckBox( objeto, labels, grafico, etiquetas ) {
         let recuento = [];
         let lista = [];
         
         // Recorrer el objeto y obtener los datos especificos de cada registro
-        const totalRegistros = 0;
         for(let i = 0; i < labels.length; i++){
             for (const key in objeto) {
                 if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
-                    lista.push(Number(objeto[key][labels[i]])); // Acceder a la propiedad deseada
+                    lista.push(Number(objeto[key][labels[i]])); // Acceder a las propiedades especificadas
                 }
             }
-            recuento[i] = lista.reduce((a, b) => a + b, 0);
-            lista = [];
+            recuento[i] = lista.reduce((a, b) => a + b, 0); // Sumar los valores de la lista, estos pertenecen a la misma categoria y se guardan en la posicion correspondiente a la etiqueta
+            lista = []; // Limpiar la lista para la siguiente etiqueta
         }
         // Convertir el objeto a arreglos para Chart.js
         grafico.labels = etiquetas;
@@ -426,6 +463,11 @@ class graficos {
         const ctx13 = document.getElementById('grafico13');
         graficos.grafico13 = graficos.dibujarGrafico(graficos.grafico13, ctx13, 'bar', 'Clinicas conocidas', graficos.datosGrafico(graficos.graf13Param.labels, 'Publico', graficos.graf13Param.data, 'Privado',  graficos.graf14Param.data, 1, false), true);
 
+        const ctx15 = document.getElementById('grafico15');
+        graficos.grafico15 = graficos.dibujarGrafico(graficos.grafico15, ctx15, 'pie', 'Servicios usados',graficos.datosGrafico(graficos.graf15Param.labels, 'Cantidad', graficos.graf15Param.data, '', [], 2, true), true);
+
+        const ctx16 = document.getElementById('grafico16');
+        graficos.grafico16 = graficos.dibujarGrafico(graficos.grafico16, ctx16, 'pie', 'Satisfaccion Publica',graficos.datosGrafico(graficos.graf16Param.labels, 'Cantidad', graficos.graf16Param.data, '', [], 2, true), true);
 
     }
 

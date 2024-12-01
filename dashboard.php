@@ -211,6 +211,22 @@
                                 <canvas id="grafico13" class=""></canvas>
                             </div>
                         </div>
+
+                        <!-- Gráfico 15 pastel mas de dos opciones -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Servicios usados</h4>
+                                <canvas id="grafico15" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 15 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Satisfaccion serv. públicos</h4>
+                                <canvas id="grafico16" class=""></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>               
             </div>
