@@ -177,11 +177,30 @@
                             </div>
                         </div>
 
-                        <!-- Gráfico 9 pastel -->
-                        <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
+                        <!-- Forzar salto de línea -->
+                        <div class="w-100"></div>
+
+                        <!-- Gráfico 9 pastel mas de dos opciones -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
                             <div class="grafico bg-light pt-3">
                                 <h4 class="text-center">Razones para consultas públicas</h4>
                                 <canvas id="grafico9" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 10 pastel mas de dos opciones -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Razones para consultas privadas</h4>
+                                <canvas id="grafico10" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 11 Barras -->
+                        <div class="col-12 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Gasto en servicios de salud</h4>
+                                <canvas id="grafico11" class=""></canvas>
                             </div>
                         </div>
                     </div>

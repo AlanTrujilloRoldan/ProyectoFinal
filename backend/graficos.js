@@ -43,7 +43,11 @@ class graficos {
     static grafico6; //grafico de pastel de la dificultad de obtencion de medicamentos
     static grafico7; //grafico de barras dobles de los usos de servicios de salud
     static grafico8; //grafico de barras dobles de los usos de servicios de salud
-    static grafico9;
+    static grafico9; //grafico de pastel con mas de dos opciones, de las razones para consultas publicas
+    static grafico10; //grafico de pastel con mas de dos opciones, de las razones para consultas privadas
+    static grafico11; //grafico de barras dobles de los gastos de servicios de salud publica
+    static grafico12; //grafico de barras dobles de los gastos de servicios de salud privada
+
     static graf1Param = {
         "labels": [],
         "data": []
@@ -91,6 +95,20 @@ class graficos {
         "labels": [],
         "data": []
     }
+    static graf10Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf11Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf12Param = {
+        "labels": [],
+        "data": []
+    }
 
     constructor() {
         this.setupEventListeners(); //Se inicializan los metodos que detectan los eventos de los componentes especificados
@@ -125,7 +143,10 @@ class graficos {
                 console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param));
                 console.log(graficos.obtenerGruposConLimite(datos, "consultasPublicas",graficos.graf7Param, 50, 6, 10));
                 console.log(graficos.obtenerGruposConLimite(datos, "consultasPrivadas",graficos.graf8Param, 50, 6, 10));
-                console.log(graficos.obtenerGruposCheckBox(datos, ["publicoMB", "publicoOQ", "publicoEV", "publicoEC", "publicoC", "publicoTD", "publicoO"], graficos.graf9Param));
+                console.log(graficos.obtenerGruposCheckBox(datos, ["publicoMB", "publicoOQ", "publicoEV", "publicoEC", "publicoC", "publicoTD", "publicoO"], graficos.graf9Param, ["Malestares básicos","Op. quirúrgicas","Enf. venéreas","Enf. crónicas","Chequeos","Trat. dentales","Otros"]));
+                console.log(graficos.obtenerGruposCheckBox(datos, ["privadoMB", "privadoOQ", "privadoEV", "privadoEC", "privadoC", "privadoTD", "privadoO"], graficos.graf10Param, ["Malestares básicos","Op. quirúrgicas","Enf. venéreas","Enf. crónicas","Chequeos","Trat. dentales","Otros"]));
+                console.log(graficos.obtenerGruposConLimite(datos, "gastoPublico",graficos.graf11Param, 20000, 5, 5000));
+                console.log(graficos.obtenerGruposConLimite(datos, "gastoPrivado",graficos.graf12Param, 20000, 5, 5000));
                 graficos.graficoEdades();
                 $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
@@ -163,7 +184,7 @@ class graficos {
         $('#estadosSelect').val('').trigger('change'); // Restablecer a la opción por defecto
     }
 
-    static obtenerGruposCheckBox( objeto, labels, grafico ) {
+    static obtenerGruposCheckBox( objeto, labels, grafico, etiquetas ) {
         let recuento = [];
         let lista = [];
         
@@ -179,7 +200,7 @@ class graficos {
             lista = [];
         }
         // Convertir el objeto a arreglos para Chart.js
-        grafico.labels = labels;
+        grafico.labels = etiquetas;
         grafico.data = recuento;
         console.log(grafico.data + ' CHECK ' + labels + " metodo de checkbox" + recuento);
         return recuento;
@@ -380,6 +401,14 @@ class graficos {
         
         const ctx9 = document.getElementById('grafico9');
         graficos.grafico9 = graficos.dibujarGrafico(graficos.grafico9, ctx9, 'pie', 'Razones para consultas públicas',graficos.datosGrafico(graficos.graf9Param.labels, 'Cantidad', graficos.graf9Param.data, '', [], 2, true), true);
+    
+        const ctx10 = document.getElementById('grafico10');
+        graficos.grafico10 = graficos.dibujarGrafico(graficos.grafico10, ctx10, 'pie', 'Razones para consultas privadas',graficos.datosGrafico(graficos.graf10Param.labels, 'Cantidad', graficos.graf10Param.data, '', [], 2, true), true);
+
+        const ctx11 = document.getElementById('grafico11');
+        graficos.grafico11 = graficos.dibujarGrafico(graficos.grafico11, ctx11, 'bar', 'Gasto total', graficos.datosGrafico(graficos.graf11Param.labels, 'Publico', graficos.graf11Param.data, 'Privado',  graficos.graf12Param.data, 1, false), true);
+        
+
     }
 
 }
