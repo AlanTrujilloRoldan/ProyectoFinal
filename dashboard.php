@@ -129,7 +129,7 @@
                         <!-- Gráfico 1 barras -->
                         <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
                             <div class="grafico bg-light pt-3 ">
-                                <h4 class="text-center" >Edades personas encuestadas</h4> <!-- Seguramente sea mejor poner los titulos de esta forma -->
+                                <h4 class="text-center" >Edad personas encuestadas</h4> <!-- Seguramente sea mejor poner los titulos de esta forma -->
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>
@@ -172,8 +172,16 @@
                         <!-- Gráfico 6 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
                             <div class="grafico bg-light pt-3">
-                                <h4 class="text-center">¿Dificultad en la obtención de medicamentos?</h4>
+                                <h4 class="text-center">¿Difícil obtención de medicamentos?</h4>
                                 <canvas id="grafico6" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 9 pastel -->
+                        <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Razones para consultas públicas</h4>
+                                <canvas id="grafico9" class=""></canvas>
                             </div>
                         </div>
                     </div>

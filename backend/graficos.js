@@ -35,15 +35,15 @@ const estados = {
 
 class graficos {
 
-    static grafico1;
-    static grafico2;
-    static grafico3;
-    static grafico4;
-    static grafico5;
-    static grafico6;
-    static grafico7;
-    static grafico8;
-    static grafico8parte2;
+    static grafico1; //grafico de barras de las edades
+    static grafico2; //grafico de pastel de los problemas de salud
+    static grafico3; //grafico de pastel de los servicios de salud
+    static grafico4; //grafico de pastel de la afiliacion a servicios de salud
+    static grafico5; //grafico de pastel de los seguros de gastos mayores
+    static grafico6; //grafico de pastel de la dificultad de obtencion de medicamentos
+    static grafico7; //grafico de barras dobles de los usos de servicios de salud
+    static grafico8; //grafico de barras dobles de los usos de servicios de salud
+    static grafico9;
     static graf1Param = {
         "labels": [],
         "data": []
@@ -87,7 +87,7 @@ class graficos {
         "labels": [],
         "data": []
     }
-    static graf8Param2 = {
+    static graf9Param = {
         "labels": [],
         "data": []
     }
@@ -125,6 +125,7 @@ class graficos {
                 console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param));
                 console.log(graficos.obtenerGruposConLimite(datos, "consultasPublicas",graficos.graf7Param, 50, 6, 10));
                 console.log(graficos.obtenerGruposConLimite(datos, "consultasPrivadas",graficos.graf8Param, 50, 6, 10));
+                console.log(graficos.obtenerGruposCheckBox(datos, ["publicoMB", "publicoOQ", "publicoEV", "publicoEC", "publicoC", "publicoTD", "publicoO"], graficos.graf9Param));
                 graficos.graficoEdades();
                 $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
@@ -152,6 +153,8 @@ class graficos {
                 console.log(graficos.obtenerSiONo(datos, "seguroGastos", graficos.graf5Param));
                 console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param));
                 console.log(graficos.obtenerGruposConLimite(datos, "consultasPublicas",graficos.graf7Param, 50, 6, 10));
+                console.log(graficos.obtenerGruposConLimite(datos, "consultasPrivadas",graficos.graf8Param, 50, 6, 10));
+                console.log(graficos.obtenerGruposCheckBox(datos, ["publicoMB", "publicoOQ"], graficos.graf9Param));
                 graficos.graficoEdades();
             }
         });
@@ -160,30 +163,26 @@ class graficos {
         $('#estadosSelect').val('').trigger('change'); // Restablecer a la opción por defecto
     }
 
-    static obtenerEdades( objeto ) {
-        let edades = [];
+    static obtenerGruposCheckBox( objeto, labels, grafico ) {
+        let recuento = [];
+        let lista = [];
         
-        // Recorrer el objeto y obtener la edad de cada registro
-        for (const key in objeto) {
-            if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
-                edades.push(objeto[key].edad); // Acceder a la propiedad 'edad'
-            }  
-        }
-        const grupos = Array(10).fill(0); // Para grupos de 10 años
-
-        // Agrupar las edades
-        edades.forEach(edad => {
-            if (edad >= 0 && edad <= 99) {
-                const grupoIndex = Math.floor(edad / 10);
-                grupos[grupoIndex]++;
+        // Recorrer el objeto y obtener los datos especificos de cada registro
+        const totalRegistros = 0;
+        for(let i = 0; i < labels.length; i++){
+            for (const key in objeto) {
+                if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
+                    lista.push(Number(objeto[key][labels[i]])); // Acceder a la propiedad deseada
+                }
             }
-        });
-
+            recuento[i] = lista.reduce((a, b) => a + b, 0);
+            lista = [];
+        }
         // Convertir el objeto a arreglos para Chart.js
-        graficos.graf1Param.labels = grupos.map((_, index) => `${index * 10}-${index * 10 + 9}`);
-        graficos.graf1Param.data = grupos;
-        console.log(grupos.map((_, index) => `${index * 10}-${index * 10 + 9}`) + ' aqui grupos');
-        return edades;
+        grafico.labels = labels;
+        grafico.data = recuento;
+        console.log(grafico.data + ' CHECK ' + labels + " metodo de checkbox" + recuento);
+        return recuento;
     }
 
     static obtenerGruposConLimite( objeto, label, grafico, limite, cantidadGrupos, divisionGrupos ) {
@@ -223,7 +222,7 @@ class graficos {
         grafico.labels= labelsGrafico;
 
         grafico.data = grupos;
-        console.log(grafico.data + ' aqui' + label);
+        console.log(grafico.data + ' aqui ' + label);
         console.log(labelsGrafico + ' aqui grupos de mi funcion ' + grupos);
 
         return lista;
@@ -258,7 +257,7 @@ class graficos {
 
         grafico.labels= Object.keys(conteo);
         grafico.data = Object.values(conteo);
-        console.log(grafico.data + ' aqui' + label);
+        console.log(grafico.data + ' aqui ' + label);
 
         return lista;
     }
@@ -296,9 +295,27 @@ class graficos {
         return grafico;
     }
 
-    static datosGrafico(labelEjeX,label1, data1, label2, data2, doble, pastel) {
+    static datosGrafico(labelEjeX,label1, data1, label2, data2, opcionGrafico, pastel) {
+        //opcionGrafico es para identificar que tipo de grafico se quiere dibujar, 0 es para un grafico de barras o pastel con dos opciones, 1 es para un grafico de barras dobles y 2 es
+        //para un grafico de pastel con mas de dos opciones
 
-        if(!doble){
+        if(opcionGrafico == 2){
+            const datos = {
+                labels: labelEjeX,
+                datasets: [
+                    {
+                        label: label1,
+                        data: data1,
+                        backgroundColor: [ 'rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(5, 19, 192, 0.6)' ],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            return datos;
+        }
+        
+        if(opcionGrafico == 0){
             const datos = {
                 labels: labelEjeX,
                 datasets: [
@@ -340,27 +357,29 @@ class graficos {
 
     static graficoEdades(edades){
         const ctx = document.getElementById('grafico1');
-        graficos.grafico1 = graficos.dibujarGrafico(graficos.grafico1, ctx, 'bar', 'Edades', graficos.datosGrafico(graficos.graf1Param.labels, 'Cantidad', graficos.graf1Param.data, '', [], false), false);
+        graficos.grafico1 = graficos.dibujarGrafico(graficos.grafico1, ctx, 'bar', 'Edades', graficos.datosGrafico(graficos.graf1Param.labels, 'Cantidad', graficos.graf1Param.data, '', [], 0, false), false);
 
         const ctx7 = document.getElementById('grafico7');
-        graficos.grafico7 = graficos.dibujarGrafico(graficos.grafico7, ctx7, 'bar', 'Consultas', graficos.datosGrafico(graficos.graf7Param.labels, 'Publicas', graficos.graf7Param.data, 'Privadas',  graficos.graf8Param.data, true), true);
+        graficos.grafico7 = graficos.dibujarGrafico(graficos.grafico7, ctx7, 'bar', 'Consultas', graficos.datosGrafico(graficos.graf7Param.labels, 'Publicas', graficos.graf7Param.data, 'Privadas',  graficos.graf8Param.data, 1, false), true);
         
 
         const ctx2 = document.getElementById('grafico2');
-        graficos.grafico2 = graficos.dibujarGrafico(graficos.grafico2, ctx2, 'pie', 'Problemas de salud', graficos.datosGrafico(["Si", "No"], 'Cantidad', graficos.graf2Param.data, '', [], false, true), true);
+        graficos.grafico2 = graficos.dibujarGrafico(graficos.grafico2, ctx2, 'pie', 'Problemas de salud', graficos.datosGrafico(["Publico", "Privado"], 'Cantidad', graficos.graf2Param.data, '', [], 0, true), true);
 
         const ctx3 = document.getElementById('grafico3');
-        graficos.grafico3 = graficos.dibujarGrafico(graficos.grafico3, ctx3, 'pie', ' Mejor servicio',graficos.datosGrafico(["Publico", "Privado"], 'Cantidad', graficos.graf3Param.data, '', [], false, true), true);
+        graficos.grafico3 = graficos.dibujarGrafico(graficos.grafico3, ctx3, 'pie', ' Mejor servicio',graficos.datosGrafico(["Publico", "Privado"], 'Cantidad', graficos.graf3Param.data, '', [], 0, true), true);
 
         const ctx4 = document.getElementById('grafico4');
-        graficos.grafico4 = graficos.dibujarGrafico(graficos.grafico4, ctx4, 'pie', '¿Afiliación a un servicio de salud?',graficos.datosGrafico(["Si", "No"], 'Cantidad', graficos.graf4Param.data, '', [], false, true), true);
+        graficos.grafico4 = graficos.dibujarGrafico(graficos.grafico4, ctx4, 'pie', '¿Afiliación a un servicio de salud?',graficos.datosGrafico(["Si", "No"], 'Cantidad', graficos.graf4Param.data, '', [], 0, true), true);
 
         const ctx5 = document.getElementById('grafico5');
-        graficos.grafico5 = graficos.dibujarGrafico(graficos.grafico5, ctx5, 'pie', 'Personas con seguro de gastos mayores',graficos.datosGrafico(["Si", "No"], 'Cantidad', graficos.graf5Param.data, '', [], false, true), true);
+        graficos.grafico5 = graficos.dibujarGrafico(graficos.grafico5, ctx5, 'pie', 'Personas con seguro de gastos mayores',graficos.datosGrafico(["Si", "No"], 'Cantidad', graficos.graf5Param.data, '', [], 0, true), true);
 
         const ctx6 = document.getElementById('grafico6');
-        graficos.grafico6 = graficos.dibujarGrafico(graficos.grafico6, ctx6, 'pie', '¿Dificultad de obtención de medicamentos?',graficos.datosGrafico(["Si", "No"], 'Cantidad', graficos.graf6Param.data, '', [], false, true), true);
+        graficos.grafico6 = graficos.dibujarGrafico(graficos.grafico6, ctx6, 'pie', '¿Dificultad de obtención de medicamentos?',graficos.datosGrafico(["Si", "No"], 'Cantidad', graficos.graf6Param.data, '', [], 0, true), true);
         
+        const ctx9 = document.getElementById('grafico9');
+        graficos.grafico9 = graficos.dibujarGrafico(graficos.grafico9, ctx9, 'pie', 'Razones para consultas públicas',graficos.datosGrafico(graficos.graf9Param.labels, 'Cantidad', graficos.graf9Param.data, '', [], 2, true), true);
     }
 
 }
