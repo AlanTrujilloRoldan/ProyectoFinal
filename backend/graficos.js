@@ -121,11 +121,12 @@ class graficos {
                 console.log(datos);
                 console.log(graficos.obtenerEdades(datos));
                 //console.log(graficos.obtenerProblemas(datos));
-                console.log(graficos.obtenerSiONo(datos, "problemasSalud", graficos.graf2Param))
-                console.log(graficos.obtenerSiONo(datos, "mejorServicio", graficos.graf3Param))
-                console.log(graficos.obtenerSiONo(datos, "afiliacionSalud", graficos.graf4Param))
-                console.log(graficos.obtenerSiONo(datos, "seguroGastos", graficos.graf5Param))
-                console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param))
+                console.log(graficos.obtenerSiONo(datos, "problemasSalud", graficos.graf2Param));
+                console.log(graficos.obtenerSiONo(datos, "mejorServicio", graficos.graf3Param));
+                console.log(graficos.obtenerSiONo(datos, "afiliacionSalud", graficos.graf4Param));
+                console.log(graficos.obtenerSiONo(datos, "seguroGastos", graficos.graf5Param));
+                console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param));
+                console.log(graficos.obtenerGruposConLimite(datos, "consultasPublicas", 50, 6, 10));
                 graficos.graficoEdades();
                 $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
@@ -161,8 +162,7 @@ class graficos {
         for (const key in objeto) {
             if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
                 edades.push(objeto[key].edad); // Acceder a la propiedad 'edad'
-            }
-            
+            }  
         }
         const grupos = Array(10).fill(0); // Para grupos de 10 años
 
@@ -177,18 +177,62 @@ class graficos {
         // Convertir el objeto a arreglos para Chart.js
         graficos.graf1Param.labels = grupos.map((_, index) => `${index * 10}-${index * 10 + 9}`);
         graficos.graf1Param.data = grupos;
+        console.log(grupos.map((_, index) => `${index * 10}-${index * 10 + 9}`) + ' aqui grupos');
         return edades;
+    }
+
+    static obtenerGruposConLimite( objeto, label, limite, cantidadGrupos, divisionGrupos ) {
+        //se deben especificar la cantidad de los grupos, dependiendo de los rangos "especificos" que se quieran representar, es decir, los grupos
+        //que se desean mostrar con el rango de 0-10,10-20 y asi, pero se debe declarar un grupo adicional para los valores que superen el limite
+        //entonces es la cantidad de grupos deseados + 1, ya que el ultimo grupo es para los valores que superen el limite
+        //El valor de la division es el rango que puede abarcar cada grupo, y el ultimo sera un valor con un signo + para indicar que es el grupo
+        //que abarca a los que rebasan el limite establecido, otro aspecto es que la funcion sirve para numeros enteros, no para decimales, pero eso 
+        //se puede arreglar en la parte de grupos.map, como esta el +1 es para enteros, pero para decimales seria +0.1
+        let lista = [];
+
+        // Recorrer el objeto y obtener los datos especificos de cada registro
+        for (const key in objeto) {
+            if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
+                lista.push(Number(objeto[key][label])); // Acceder a la propiedad deseada
+            }
+        }
+
+        const grupos = Array(cantidadGrupos).fill(0); // Se crea un arreglo con la cantidad de grupos especificada
+
+        // Agrupar las edades
+        lista.forEach(valor => {
+            
+                if(valor >= limite){
+                    grupos[cantidadGrupos - 1]++; //En caso de que haya un valor que sea mayor o igual al limite establecido, se coloca al final, que ese grupo expresa
+                    //los valores superiores a este limite, siendo por ejemplo 1000+ o 5000+ etc.
+                    return;
+                }
+
+                const grupoIndex = Math.floor(valor / divisionGrupos);
+                grupos[grupoIndex]++;
+        });
+
+        // Se crean los labels para el gráfico, indicando los rangos de los grupos dependiendo de como se hayan hecho las divisiones
+        let labelsGrafico = grupos.map((_, index) => `${index * divisionGrupos}-${index * divisionGrupos + (divisionGrupos - 1)}`); 
+        labelsGrafico[labelsGrafico.length - 1] = `${(cantidadGrupos - 1) * divisionGrupos}+`;
+        //grafico.labels= grupos.map((_, index) => `${index * divisionGrupos}-${index * divisionGrupos + (divisionGrupos - 1)}`); 
+
+        //grafico.data = grupos;
+        //console.log(grafico.data + ' aqui' + label);
+        console.log(labelsGrafico + ' aqui grupos de mi funcion ' + grupos);
+
+        return lista;
+
     }
 
     static obtenerSiONo(objeto, label, grafico){
         let lista = [];
 
-        // Recorrer el objeto y obtener la edad de cada registro
+        // Recorrer el objeto y obtener los datos especificos de cada registro
         for (const key in objeto) {
             if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
-                lista.push(Number(objeto[key][label])); // Acceder a la propiedad 'edad'
+                lista.push(Number(objeto[key][label])); // Acceder a la propiedad deseada
             }
-
         }
 
         const conteo = {
