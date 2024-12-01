@@ -28,7 +28,6 @@
             min-height: 170px; /* Establece una altura mínima */
             max-width: 100%; /* Ensure the width does not exceed the container */
         }
-
         
     </style>
 
@@ -126,29 +125,49 @@
                         </div>
                     </div>
                     
-                    <div class="row d-flex align-items-center justify-content-center"> <!-- Contenedor de fila para los gráficos -->
-                        <!-- Gráfico 1 -->
+                    <div class="row d-flex align-items-center justify-content-around"> <!-- Contenedor de fila para los gráficos -->
+                        <!-- Gráfico 1 barras -->
                         <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
                             <div class="grafico bg-light pt-3 ">
+                                <h4 class="text-center">Etiqueta titulo edades grafico</h4> //Seguramente sea mejor poner los titulos de esta forma
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>
-                        <!-- Gráfico 2 -->
+                        <!-- Gráfico 7 barras -->
+                        <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
+                            <div class="grafico bg-light pt-3 ">
+                                <canvas id="grafico7" class=""></canvas>
+                            </div>
+                        </div>
+                        <!-- Gráfico 2 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">
                             <div class="grafico bg-light pt-3">
                                 <canvas id="grafico2" class=""></canvas>
                             </div>
                         </div>
-                        <!-- Gráfico 3 -->
+                        <!-- Gráfico 3 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">
                             <div class="grafico bg-light pt-3">
                                 <canvas id="grafico3" class=""></canvas>
                             </div>
                         </div>
-                        <!-- Gráfico 4 -->
+                        <!-- Gráfico 4 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
                             <div class="grafico bg-light pt-3">
                                 <canvas id="grafico4" class=""></canvas>
+                            </div>
+                        </div>
+                        <!-- Gráfico 5 pastel -->
+                        <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <canvas id="grafico5" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 6 pastel -->
+                        <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <canvas id="grafico6" class=""></canvas>
                             </div>
                         </div>
                     </div>
