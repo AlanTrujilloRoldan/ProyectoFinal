@@ -211,37 +211,6 @@ class graficos {
         return lista;
     }
 
-    static obtenerProblemas(objeto){
-        let problemas = [];
-        
-        // Recorrer el objeto y obtener la edad de cada registro
-        for (const key in objeto) {
-            if (objeto.hasOwnProperty(key) && !isNaN(key)) { // Verificar que sea un índice numérico
-                problemas.push(Number(objeto[key].problemasSalud)); // Acceder a la propiedad 'edad'
-            }
-            
-        }
-
-        const conteo = {
-            'Ceros': 0,
-            'Unos': 0
-        };
-
-        problemas.forEach(valor => {
-            if (valor === 0) {
-                conteo['Ceros']++;
-            } else if (valor === 1) {
-                conteo['Unos']++;
-            }
-        });
-
-        // Convertir el objeto a arreglos para Chart.js
-        graficos.graf2Param.labels = Object.keys(conteo);
-        graficos.graf2Param.data = Object.values(conteo);
-        console.log(graficos.graf2Param.data + ' aqui');
-        return problemas;
-    }
-
     static graficoEdades(edades){
         const ctx = document.getElementById('grafico1');
         if (graficos.grafico1) {
@@ -382,6 +351,75 @@ class graficos {
                 }
             }
         });
+
+        const ctx5 = document.getElementById('grafico5');
+        if (graficos.grafico5) {
+            graficos.grafico5.destroy();
+        }
+        graficos.grafico5 = new Chart(ctx5, {
+            type: 'pie',
+            data: {
+            labels: ["Si", "No"],
+            datasets: [{
+                label: 'Afiliacion',
+                data: graficos.graf5Param.data,
+                borderWidth: 1
+            }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Personas con seguro de gastos mayores', // Título del gráfico
+                        font: {
+                            size: 14 // Tamaño de la fuente del título
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctx6 = document.getElementById('grafico6');
+        if (graficos.grafico6) {
+            graficos.grafico6.destroy();
+        }
+        graficos.grafico6 = new Chart(ctx6, {
+            type: 'pie',
+            data: {
+            labels: ["Si", "No"],
+            datasets: [{
+                label: 'Afiliacion',
+                data: graficos.graf6Param.data,
+                borderWidth: 1
+            }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '¿Dificultad de obtención de medicamentos?', // Título del gráfico
+                        font: {
+                            size: 14 // Tamaño de la fuente del título
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
     }
 
 }
