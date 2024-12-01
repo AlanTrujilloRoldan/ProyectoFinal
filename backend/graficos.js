@@ -47,6 +47,8 @@ class graficos {
     static grafico10; //grafico de pastel con mas de dos opciones, de las razones para consultas privadas
     static grafico11; //grafico de barras dobles de los gastos de servicios de salud publica
     static grafico12; //grafico de barras dobles de los gastos de servicios de salud privada
+    static grafico13; //grafico de pastel con mas de dos opciones, de los establecimientos de salud pública en la localidad
+    static grafico14; //grafico de pastel con mas de dos opciones, de los establecimientos de salud privada en la localidad
 
     static graf1Param = {
         "labels": [],
@@ -110,6 +112,16 @@ class graficos {
         "data": []
     }
 
+    static graf13Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf14Param = {
+        "labels": [],
+        "data": []
+    }
+
     constructor() {
         this.setupEventListeners(); //Se inicializan los metodos que detectan los eventos de los componentes especificados
     }
@@ -147,6 +159,8 @@ class graficos {
                 console.log(graficos.obtenerGruposCheckBox(datos, ["privadoMB", "privadoOQ", "privadoEV", "privadoEC", "privadoC", "privadoTD", "privadoO"], graficos.graf10Param, ["Malestares básicos","Op. quirúrgicas","Enf. venéreas","Enf. crónicas","Chequeos","Trat. dentales","Otros"]));
                 console.log(graficos.obtenerGruposConLimite(datos, "gastoPublico",graficos.graf11Param, 20000, 5, 5000));
                 console.log(graficos.obtenerGruposConLimite(datos, "gastoPrivado",graficos.graf12Param, 20000, 5, 5000));
+                console.log(graficos.obtenerGruposConLimite(datos, "clinicasPublicas",graficos.graf13Param, 5, 6, 1));
+                console.log(graficos.obtenerGruposConLimite(datos, "clinicasPrivadas",graficos.graf14Param, 5, 6, 1));
                 graficos.graficoEdades();
                 $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
@@ -238,7 +252,8 @@ class graficos {
         });
 
         // Se crean los labels para el gráfico, indicando los rangos de los grupos dependiendo de como se hayan hecho las divisiones
-        let labelsGrafico = grupos.map((_, index) => `${index * divisionGrupos}-${index * divisionGrupos + (divisionGrupos - 1)}`); 
+        //La condicion en las etiquetas es para ver si la division es de 1, que se muestre 1,2,3, y asi, pero si es mayor entonces se muestran como rangos, ejemplo 0-10, 10-20, etc.
+        let labelsGrafico = (divisionGrupos) == 1 ? grupos.map((_, index) => `${index * divisionGrupos}`) : grupos.map((_, index) => `${index * divisionGrupos}-${index * divisionGrupos + (divisionGrupos - 1)}`); 
         labelsGrafico[labelsGrafico.length - 1] = `${(cantidadGrupos - 1) * divisionGrupos}+`;
         grafico.labels= labelsGrafico;
 
@@ -408,6 +423,9 @@ class graficos {
         const ctx11 = document.getElementById('grafico11');
         graficos.grafico11 = graficos.dibujarGrafico(graficos.grafico11, ctx11, 'bar', 'Gasto total', graficos.datosGrafico(graficos.graf11Param.labels, 'Publico', graficos.graf11Param.data, 'Privado',  graficos.graf12Param.data, 1, false), true);
         
+        const ctx13 = document.getElementById('grafico13');
+        graficos.grafico13 = graficos.dibujarGrafico(graficos.grafico13, ctx13, 'bar', 'Clinicas conocidas', graficos.datosGrafico(graficos.graf13Param.labels, 'Publico', graficos.graf13Param.data, 'Privado',  graficos.graf14Param.data, 1, false), true);
+
 
     }
 

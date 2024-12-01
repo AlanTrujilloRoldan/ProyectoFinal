@@ -133,7 +133,7 @@
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>
-                        <!-- Gráfico 7 barras -->
+                        <!-- Gráfico 7 barras doble -->
                         <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
                             <div class="grafico bg-light pt-3 ">
                                 <h4 class="text-center">Usos servicios de salud</h4>
@@ -196,11 +196,19 @@
                             </div>
                         </div>
 
-                        <!-- Gráfico 11 Barras -->
+                        <!-- Gráfico 11 Barras doble -->
                         <div class="col-12 col-md-6 mb-3 d-flex justify-content-center">                          
                             <div class="grafico bg-light pt-3">
-                                <h4 class="text-center">Gasto en servicios de salud</h4>
+                                <h4 class="text-center">Gasto aproximado en servicios de salud</h4>
                                 <canvas id="grafico11" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 13 Barras doble -->
+                        <div class="col-12 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Establecimientos de salud en la localidad</h4>
+                                <canvas id="grafico13" class=""></canvas>
                             </div>
                         </div>
                     </div>
