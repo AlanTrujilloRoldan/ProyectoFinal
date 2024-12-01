@@ -133,6 +133,12 @@
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>
+                        <!-- Gráfico 7 barras -->
+                        <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
+                            <div class="grafico bg-light pt-3 ">
+                                <canvas id="grafico7" class=""></canvas>
+                            </div>
+                        </div>
                         <!-- Gráfico 2 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">
                             <div class="grafico bg-light pt-3">

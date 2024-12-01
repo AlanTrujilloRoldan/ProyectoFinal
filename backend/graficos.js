@@ -65,6 +65,10 @@ class graficos {
     static grafico2;
     static grafico3;
     static grafico4;
+    static grafico5;
+    static grafico6;
+    static grafico7;
+    static grafico8;
     static graf1Param = {
         "labels": [],
         "data": []
@@ -90,6 +94,16 @@ class graficos {
     }
 
     static graf6Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf7Param = {
+        "labels": [],
+        "data": []
+    }
+
+    static graf7Param = {
         "labels": [],
         "data": []
     }
@@ -126,7 +140,7 @@ class graficos {
                 console.log(graficos.obtenerSiONo(datos, "afiliacionSalud", graficos.graf4Param));
                 console.log(graficos.obtenerSiONo(datos, "seguroGastos", graficos.graf5Param));
                 console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param));
-                console.log(graficos.obtenerGruposConLimite(datos, "consultasPublicas", 50, 6, 10));
+                console.log(graficos.obtenerGruposConLimite(datos, "consultasPublicas",graficos.graf7Param, 50, 6, 10));
                 graficos.graficoEdades();
                 $('#tipoEstadisticas').text('Estadísticas nacionales');
             }
@@ -181,7 +195,7 @@ class graficos {
         return edades;
     }
 
-    static obtenerGruposConLimite( objeto, label, limite, cantidadGrupos, divisionGrupos ) {
+    static obtenerGruposConLimite( objeto, label, grafico, limite, cantidadGrupos, divisionGrupos ) {
         //se deben especificar la cantidad de los grupos, dependiendo de los rangos "especificos" que se quieran representar, es decir, los grupos
         //que se desean mostrar con el rango de 0-10,10-20 y asi, pero se debe declarar un grupo adicional para los valores que superen el limite
         //entonces es la cantidad de grupos deseados + 1, ya que el ultimo grupo es para los valores que superen el limite
@@ -215,10 +229,10 @@ class graficos {
         // Se crean los labels para el gráfico, indicando los rangos de los grupos dependiendo de como se hayan hecho las divisiones
         let labelsGrafico = grupos.map((_, index) => `${index * divisionGrupos}-${index * divisionGrupos + (divisionGrupos - 1)}`); 
         labelsGrafico[labelsGrafico.length - 1] = `${(cantidadGrupos - 1) * divisionGrupos}+`;
-        //grafico.labels= grupos.map((_, index) => `${index * divisionGrupos}-${index * divisionGrupos + (divisionGrupos - 1)}`); 
+        grafico.labels= labelsGrafico;
 
-        //grafico.data = grupos;
-        //console.log(grafico.data + ' aqui' + label);
+        grafico.data = grupos;
+        console.log(grafico.data + ' aqui' + label);
         console.log(labelsGrafico + ' aqui grupos de mi funcion ' + grupos);
 
         return lista;
@@ -278,6 +292,44 @@ class graficos {
                     title: {
                         display: true,
                         text: 'Edades de las personas encuestadas', // Título del gráfico
+                        font: {
+                            size: 14 // Tamaño de la fuente del título
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctx7 = document.getElementById('grafico7');
+        if (graficos.grafico7) {
+            graficos.grafico7.destroy();
+        }
+        graficos.grafico7 = new Chart(ctx7, {
+            type: 'bar',
+            data: {
+            labels:  graficos.graf7Param.labels , //edades
+            datasets: [{
+                label: 'Frecuencia edades',
+                data:  graficos.graf7Param.data, //frecuencia
+                borderWidth: 1,
+                borderColor: 'rgba(255, 99, 132, 1)'
+            }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Total consultas publicas', // Título del gráfico
                         font: {
                             size: 14 // Tamaño de la fuente del título
                         }
