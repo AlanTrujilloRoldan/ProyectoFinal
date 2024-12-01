@@ -33,32 +33,6 @@ const estados = {
     "Zacatecas": 32
 };
 
-const satisfaccion = {
-    "Muy satisfecho": 1,
-    "Satisfecho": 2,
-    "Insatisfecho": 3, 
-    "Muy insatisfecho": 4
-};
-
-const accesibilidad = {
-    "Muy accesibles": 1,
-    "Moderadamente accesibles": 2,
-    "Poco accesibles": 3, 
-    "Inaccesibles": 4
-};
-
-const frecuencia = {
-    "Nunca": 1,
-    "Una vez al año": 2,
-    "Más de una vez al año": 3, 
-}
-
-const razones = {
-    "Problema económico": 1,
-    "Falta de tiempo": 2,
-    "Lejanía de su domicilio al hospital, clínica, etc.": 3, 
-}
-
 class graficos {
 
     static grafico1;
@@ -133,8 +107,7 @@ class graficos {
                 const datos = JSON.parse(response);
             
                 console.log(datos);
-                console.log(graficos.obtenerEdades(datos));
-                //console.log(graficos.obtenerProblemas(datos));
+                console.log(graficos.obtenerGruposConLimite(datos, "edad",graficos.graf1Param, 75, 6, 15));
                 console.log(graficos.obtenerSiONo(datos, "problemasSalud", graficos.graf2Param));
                 console.log(graficos.obtenerSiONo(datos, "mejorServicio", graficos.graf3Param));
                 console.log(graficos.obtenerSiONo(datos, "afiliacionSalud", graficos.graf4Param));
@@ -156,11 +129,18 @@ class graficos {
             url: './backend/listarEstado',
             data: {estado: value},
             type: 'GET',
-            success: function (response) {
+            success: function (response) { //Si se quisiera dejar de usar los metodos estaticos, entonces esta funcion tiene que estar declarada como una funcion de flecha
+                //ya que al usar las llaves no se puede usar el this para referirse a la clase, no lo cambio porque se les tendria que quitar el static a todas las funciones
+                // ademas de que tecnicamente no hay problema, pero creo que se veria un poco mejor si ni usara los metodos estaticos
                 const datos = JSON.parse(response);
-                console.log(graficos.obtenerEdades(datos));
-                console.log(graficos.obtenerProblemas(datos));
                 console.log(datos);
+                console.log(graficos.obtenerGruposConLimite(datos, "edad",graficos.graf1Param, 75, 6, 15));
+                console.log(graficos.obtenerSiONo(datos, "problemasSalud", graficos.graf2Param));
+                console.log(graficos.obtenerSiONo(datos, "mejorServicio", graficos.graf3Param));
+                console.log(graficos.obtenerSiONo(datos, "afiliacionSalud", graficos.graf4Param));
+                console.log(graficos.obtenerSiONo(datos, "seguroGastos", graficos.graf5Param));
+                console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param));
+                console.log(graficos.obtenerGruposConLimite(datos, "consultasPublicas",graficos.graf7Param, 50, 6, 10));
                 graficos.graficoEdades();
             }
         });
@@ -239,6 +219,7 @@ class graficos {
 
     }
 
+
     static obtenerSiONo(objeto, label, grafico){
         let lista = [];
 
@@ -255,12 +236,14 @@ class graficos {
         };
 
         lista.forEach(valor => {
-            if (valor === 0) {
+            if (valor == 0) {
                 conteo['Ceros']++;
-            } else if (valor === 1) {
+            } else if (valor == 1) {
                 conteo['Unos']++;
             }
         });
+
+        console.log(conteo + ' aqui conteo ' + label);
 
         grafico.labels= Object.keys(conteo);
         grafico.data = Object.values(conteo);
@@ -269,257 +252,74 @@ class graficos {
         return lista;
     }
 
+    static dibujarGrafico(grafico, ctx, tipo, titulo, label, datos, pastel){ //La proxima modificacion seguro que es el tema de los colores
+        if (grafico) {
+            grafico.destroy();
+        }
+        grafico = new Chart(ctx, {
+            type: tipo,
+            data: {
+                labels: label,
+                datasets: [{
+                    data: datos,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // Mantiene la relación de aspecto
+                plugins: {
+                    title: {
+                        display: true,
+                        text: titulo, // Título del gráfico
+                        font: {
+                            size: 14 // Tamaño de la fuente del título
+                        }
+                    },
+                    legend: {
+                        display: pastel//Esto es para mostrar las etiquetas que muestran que significa cada color en el grafico, pero como solo quiero que se usen
+                        //en los graficos de pastel, entonces se debe especificar en la llamada de la funcion, true para cuando sea de pastel y false cuando no, para las de barras
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        return grafico;
+    }
+
+    
+
     static graficoEdades(edades){
         const ctx = document.getElementById('grafico1');
-        if (graficos.grafico1) {
-            graficos.grafico1.destroy();
-        }
-        graficos.grafico1 = new Chart(ctx, {
-            type: 'bar',
-            data: {
-            labels:  graficos.graf1Param.labels , //edades
-            datasets: [{
-                label: 'Frecuencia edades',
-                data:  graficos.graf1Param.data, //frecuencia
-                borderWidth: 1,
-                borderColor: 'rgba(255, 99, 132, 1)'
-            }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true, // Mantiene la relación de aspecto
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Edades de las personas encuestadas', // Título del gráfico
-                        font: {
-                            size: 14 // Tamaño de la fuente del título
-                        }
-                    },
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        graficos.grafico1 = graficos.dibujarGrafico(graficos.grafico1, ctx, 'bar', 'Edades de las personas encuestadas', graficos.graf1Param.labels, graficos.graf1Param.data, false);
 
         const ctx7 = document.getElementById('grafico7');
-        if (graficos.grafico7) {
-            graficos.grafico7.destroy();
-        }
-        graficos.grafico7 = new Chart(ctx7, {
-            type: 'bar',
-            data: {
-            labels:  graficos.graf7Param.labels , //edades
-            datasets: [{
-                label: 'Frecuencia edades',
-                data:  graficos.graf7Param.data, //frecuencia
-                borderWidth: 1,
-                borderColor: 'rgba(255, 99, 132, 1)'
-            }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true, // Mantiene la relación de aspecto
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Total consultas publicas', // Título del gráfico
-                        font: {
-                            size: 14 // Tamaño de la fuente del título
-                        }
-                    },
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        graficos.grafico7 = graficos.dibujarGrafico(graficos.grafico7, ctx7, 'bar', 'Edades de las personas encuestadas', graficos.graf7Param.labels, graficos.graf7Param.data , false);
+        
 
         const ctx2 = document.getElementById('grafico2');
-        if (graficos.grafico2) {
-            graficos.grafico2.destroy();
-        }
-        graficos.grafico2 = new Chart(ctx2, {
-            type: 'pie',
-            data: {
-            labels: ["Publico", "Privado"],
-            datasets: [{
-                label: 'Servicio al que acude',
-                data: graficos.graf2Param.data, //frecuencia
-                borderWidth: 1
-            }]
-            },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true, // Mantiene la relación de aspecto
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Servicio al que Acude', // Título del gráfico
-                            font: {
-                                size: 14 // Tamaño de la fuente del título
-                            }
-                        }
-                    },
-                    scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        graficos.grafico2 = graficos.dibujarGrafico(graficos.grafico2, ctx2, 'pie', 'Servicio al que acude', ["Publico", "Privado"], graficos.graf2Param.data, true);
 
         const ctx3 = document.getElementById('grafico3');
-        if (graficos.grafico3) {
-            graficos.grafico3.destroy();
-        }
-        graficos.grafico3 = new Chart(ctx3, {
-            type: 'pie',
-            data: {
-            labels: ["Publico", "Privado"],
-            datasets: [{
-                label: 'Mejor servicio',
-                data: graficos.graf3Param.data,
-                borderWidth: 1
-            }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true, // Mantiene la relación de aspecto
-                plugins: {
-                    title: {
-                        display: true,
-                        text: ' Mejor servicio', // Título del gráfico
-                        font: {
-                            size: 14 // Tamaño de la fuente del título
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        graficos.grafico3 = graficos.dibujarGrafico(graficos.grafico3, ctx3, 'pie', ' Mejor servicio', ["Publico", "Privado"], graficos.graf3Param.data, true);
 
         const ctx4 = document.getElementById('grafico4');
-        if (graficos.grafico4) {
-            graficos.grafico4.destroy();
-        }
-        graficos.grafico4 = new Chart(ctx4, {
-            type: 'pie',
-            data: {
-            labels: ["Si", "No"],
-            datasets: [{
-                label: 'Afiliacion',
-                data: graficos.graf4Param.data,
-                borderWidth: 1
-            }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true, // Mantiene la relación de aspecto
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '¿Afiliación a un servicio de salud?', // Título del gráfico
-                        font: {
-                            size: 14 // Tamaño de la fuente del título
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        graficos.grafico4 = graficos.dibujarGrafico(graficos.grafico4, ctx4, 'pie', '¿Afiliación a un servicio de salud?', ["Si", "No"], graficos.graf4Param.data, true);
 
         const ctx5 = document.getElementById('grafico5');
-        if (graficos.grafico5) {
-            graficos.grafico5.destroy();
-        }
-        graficos.grafico5 = new Chart(ctx5, {
-            type: 'pie',
-            data: {
-            labels: ["Si", "No"],
-            datasets: [{
-                label: 'Afiliacion',
-                data: graficos.graf5Param.data,
-                borderWidth: 1
-            }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true, // Mantiene la relación de aspecto
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Personas con seguro de gastos mayores', // Título del gráfico
-                        font: {
-                            size: 14 // Tamaño de la fuente del título
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        graficos.grafico5 = graficos.dibujarGrafico(graficos.grafico5, ctx5, 'pie', 'Personas con seguro de gastos mayores', ["Si", "No"], graficos.graf5Param.data, true);
 
         const ctx6 = document.getElementById('grafico6');
-        if (graficos.grafico6) {
-            graficos.grafico6.destroy();
-        }
-        graficos.grafico6 = new Chart(ctx6, {
-            type: 'pie',
-            data: {
-            labels: ["Si", "No"],
-            datasets: [{
-                label: 'Afiliacion',
-                data: graficos.graf6Param.data,
-                borderWidth: 1
-            }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true, // Mantiene la relación de aspecto
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '¿Dificultad de obtención de medicamentos?', // Título del gráfico
-                        font: {
-                            size: 14 // Tamaño de la fuente del título
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        graficos.grafico6 = graficos.dibujarGrafico(graficos.grafico6, ctx6, 'pie', '¿Dificultad de obtención de medicamentos?', ["Si", "No"], graficos.graf6Param.data, true);
 
     }
 
 }
-console.log(getEstadoPorValor(1));
+
 function getEstadoPorValor(valor) {
     return Object.keys(estados).find(key => estados[key] === valor);
 }
