@@ -220,11 +220,60 @@
                             </div>
                         </div>
 
-                        <!-- Gráfico 15 pastel mas de dos opciones, de un select -->
+                        <!-- Gráfico 18 pastel mas de dos opciones, de un select --> <!-- El orden desfasado es porque estuve acomodando los graficos con los que tenian
+                        un tamaño similar-->
                         <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
                             <div class="grafico bg-light pt-3">
-                                <h4 class="text-center">Satisfaccion serv. públicos</h4>
+                                <h4 class="text-center">Accesibilidad distancia</h4>
+                                <canvas id="grafico18" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 16 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Satisfaccion en serv. públicos</h4>
                                 <canvas id="grafico16" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 17 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Satisfaccion en serv. privados</h4>
+                                <canvas id="grafico17" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 19 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Chequeos rutinarios</h4>
+                                <canvas id="grafico19" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 20 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Consultas en línea</h4>
+                                <canvas id="grafico20" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 21 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Razones no ir al médico</h4>
+                                <canvas id="grafico21" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 202 pastel mas de dos opciones, de un checkbox -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light pt-3">
+                                <h4 class="text-center">Cosas que deben mejorar</h4>
+                                <canvas id="grafico22" class=""></canvas>
                             </div>
                         </div>
                     </div>
