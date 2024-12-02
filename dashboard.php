@@ -28,6 +28,39 @@
             min-height: 170px; /* Establece una altura mínima */
             max-width: 100%; /* Ensure the width does not exceed the container */
         }
+
+        .btna {
+            border: none; 
+            color: white; 
+            padding: 14px 28px; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            display: inline-block;
+            margin: 5px;
+            transition: box-shadow 0.1s ease-in-out; /* Transición suave del efecto de sombra */
+        }
+
+        .fondoOpciones{
+            background-color: #393551;
+        }
+
+        .fondoEstadisticas{
+            background-color: #9e6389
+        }
+
+        .fondoGraficas{
+            background-color: #f8c1cd;
+        }
+
+        .shadow-effect:hover {
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Aumenta el desplazamiento y la opacidad de la sombra */
+        }
+
+        .success {background-image: linear-gradient(to right, #28a745, #56c150);} 
+        .success:hover {background-image: linear-gradient(to right, #34b556, #56c150);}
+
+        .primary {background-image: linear-gradient(to right, #007bff, #4ab2e2);} 
+        .primary:hover {background-image: linear-gradient(to right, #0b7dda, #4ab2e2);}
         
     </style>
 
@@ -38,7 +71,7 @@
 <body>
 
     <!-- BARRA DE NAVEGACIÓN -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href=".">UMSS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -56,19 +89,16 @@
         </div>
     </nav>
 
-    <div class="container-fluid bg-primary">
-        <div class="row ">
-            <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center">
-                <div class="container bg-danger  mt-5 text-center pb-5">
-                <ul class="nav flex-column ">
-                    <li class="nav-item mb-4">
-                        <button type="button" class="btn btn-success" fdprocessedid="megrkk" id="nacionales">Datos Nacionales</button>
+    <div class="container-fluid" style="margin-top:30px;">
+        <div class="row">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="container fondoOpciones rounded mt-5 text-center">
+                <ul class="nav d-flex justify-content-center">
+                    <li class=" mt-2 mb-3 col-12">
+                        <button type="button" class="btna success shadow-effect" fdprocessedid="megrkk" id="nacionales">Datos Nacionales</button>
                     </li>
-                    <li class="nav-item mb-4">
-                        <button type="button" class="btn btn-primary" fdprocessedid="megrkk">Más necesitados</button>
-                    </li>
-                    <li class="nav-item mb-4">
 
+                    <li class="nav-item col-12">
                         <div class="form-group ">
                             <label class="badge-pill badge-secondary" for="estadosSelect">Selecciona un Estado:</label>
                             <select class="form-control form-select" id="estadosSelect">
@@ -107,17 +137,14 @@
                                 <option value="32">Zacatecas</option>
                             </select>
                             <!-- Botón para enviar -->
-                            <button class="btn btn-primary mt-2" id="submitButton">Seleccionar Estado</button>
+                            <button class="btna primary shadow-effect mt-3" id="submitButton">Seleccionar Estado</button>
                         </div>
-                    </li>
-                    <li class="nav-item mb-4">
-                        <button type="button" class="btn btn-warning" fdprocessedid="megrkk">Estadísticas</button>
                     </li>
                 </ul>
                 </div>
             </div>
-            <div class="col-12 col-sm-9">
-                <div class="container bg-success pt-3 mt-5">
+            <div class="col-12 ">
+                <div class="container fondoEstadisticas rounded pt-3 mt-5">
                     <div class="row">
                         <div class="col-12 text-center ">
                             <h1 class="badge-secondary rounded" id="titulo">Estadísticas</h1>
@@ -127,47 +154,153 @@
                     
                     <div class="row d-flex align-items-center justify-content-around"> <!-- Contenedor de fila para los gráficos -->
                         <!-- Gráfico 1 barras -->
-                        <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
-                            <div class="grafico bg-light pt-3 ">
-                                <h4 class="text-center">Etiqueta titulo edades grafico</h4> //Seguramente sea mejor poner los titulos de esta forma
+                        <div class="col-12  col-md-6 mb-3 d-flex align-items-center justify-content-center">
+                            <div class="grafico fondoGraficas rounded pt-3 ">
+                                <h4 class="text-center" >Edad personas encuestadas</h4> <!-- Seguramente sea mejor poner los titulos de esta forma -->
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
                         </div>
-                        <!-- Gráfico 7 barras -->
+                        <!-- Gráfico 7 barras doble -->
                         <div class="col-12 col-md-6 mb-3 d-flex align-items-center justify-content-center">
-                            <div class="grafico bg-light pt-3 ">
+                            <div class="grafico bg-light rounded pt-3 ">
+                                <h4 class="text-center">Usos servicios de salud</h4>
                                 <canvas id="grafico7" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 2 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">
-                            <div class="grafico bg-light pt-3">
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Servicio al que acude</h4>
                                 <canvas id="grafico2" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 3 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">
-                            <div class="grafico bg-light pt-3">
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Mejor servicio</h4>
                                 <canvas id="grafico3" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 4 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
-                            <div class="grafico bg-light pt-3">
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">¿Afiliación a un servicio de salud?</h4>
                                 <canvas id="grafico4" class=""></canvas>
                             </div>
                         </div>
                         <!-- Gráfico 5 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
-                            <div class="grafico bg-light pt-3">
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">¿Cuenta con seguro de gastos mayores?</h4>
                                 <canvas id="grafico5" class=""></canvas>
                             </div>
                         </div>
 
                         <!-- Gráfico 6 pastel -->
                         <div class="col-8 col-md-5 mb-3 d-flex justify-content-center">                          
-                            <div class="grafico bg-light pt-3">
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">¿Difícil obtención de medicamentos?</h4>
                                 <canvas id="grafico6" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Forzar salto de línea -->
+                        <div class="w-100"></div>
+
+                        <!-- Gráfico 9 pastel mas de dos opciones -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Razones para consultas públicas</h4>
+                                <canvas id="grafico9" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 10 pastel mas de dos opciones -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Razones para consultas privadas</h4>
+                                <canvas id="grafico10" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 11 Barras doble -->
+                        <div class="col-12 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Gasto aproximado en servicios de salud</h4>
+                                <canvas id="grafico11" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 13 Barras doble -->
+                        <div class="col-12 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Establecimientos de salud en la localidad</h4>
+                                <canvas id="grafico13" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 15 pastel mas de dos opciones -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Servicios usados</h4>
+                                <canvas id="grafico15" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 18 pastel mas de dos opciones, de un select --> <!-- El orden desfasado es porque estuve acomodando los graficos con los que tenian
+                        un tamaño similar-->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Accesibilidad distancia</h4>
+                                <canvas id="grafico18" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 16 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Satisfaccion en serv. públicos</h4>
+                                <canvas id="grafico16" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 17 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Satisfaccion en serv. privados</h4>
+                                <canvas id="grafico17" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 19 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Chequeos rutinarios</h4>
+                                <canvas id="grafico19" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 20 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Consultas en línea</h4>
+                                <canvas id="grafico20" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 21 pastel mas de dos opciones, de un select -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Razones no ir al médico</h4>
+                                <canvas id="grafico21" class=""></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico 202 pastel mas de dos opciones, de un checkbox -->
+                        <div class="col-10 col-md-6 mb-3 d-flex justify-content-center">                          
+                            <div class="grafico bg-light rounded pt-3">
+                                <h4 class="text-center">Cosas que deben mejorar</h4>
+                                <canvas id="grafico22" class=""></canvas>
                             </div>
                         </div>
                     </div>

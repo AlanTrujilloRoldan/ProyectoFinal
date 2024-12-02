@@ -317,7 +317,7 @@
                                 <p id="accesibilidadDistancia-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
                             <div class="form-group">
-                                <label for="chequeosAnuales">¿Con qué frecuencia realiza chequeos médicos anuales?</label>
+                                <label for="chequeosAnuales">¿Con qué frecuencia realiza chequeos médicos rutinarios?</label>
                                 <select class="form-control" id="chequeosAnuales">
                                     <option value="" disabled selected>--Selecciona--</option>
                                     <option value="Nunca">Nunca</option>
