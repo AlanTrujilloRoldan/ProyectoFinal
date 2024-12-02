@@ -8,7 +8,12 @@
     <!-- BOOTSTRAP 4 -->
     <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
     <style>
-
+        h1 {
+            color: #00c9c9;
+        }
+        body {
+            background-color: #87bba2;
+        }
         /* Estilo para ajustar el ancho del select */
         .form-select {
             max-width: 220px; /* Cambia este valor al ancho deseado */
@@ -41,15 +46,15 @@
         }
 
         .fondoOpciones{
-            background-color: #393551;
+            background-color: #203c4c;
         }
 
         .fondoEstadisticas{
-            background-color: #9e6389
+            background-color: #3e526b;
         }
 
         .fondoGraficas{
-            background-color: #f8c1cd;
+            background-color: #180fbc;
         }
 
         .shadow-effect:hover {
@@ -147,7 +152,7 @@
                 <div class="container fondoEstadisticas rounded pt-3 mt-5">
                     <div class="row">
                         <div class="col-12 text-center ">
-                            <h1 class="badge-secondary rounded" id="titulo">Estadísticas</h1>
+                            <h1 style="background-color: #9baebc;" class="badge-secondary rounded" id="titulo">Estadísticas</h1>
                             <h2 class="badge-primary rounded" id="tipoEstadisticas">Hola</h2>
                         </div>
                     </div>
@@ -155,7 +160,7 @@
                     <div class="row d-flex align-items-center justify-content-around"> <!-- Contenedor de fila para los gráficos -->
                         <!-- Gráfico 1 barras -->
                         <div class="col-12  col-md-6 mb-3 d-flex align-items-center justify-content-center">
-                            <div class="grafico fondoGraficas rounded pt-3 ">
+                            <div class="grafico bg-light rounded pt-3 ">
                                 <h4 class="text-center" >Edad personas encuestadas</h4> <!-- Seguramente sea mejor poner los titulos de esta forma -->
                                 <canvas id="grafico1" class=""></canvas>
                             </div>
