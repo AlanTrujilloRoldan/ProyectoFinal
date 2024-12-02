@@ -243,9 +243,22 @@ class graficos {
                 console.log(graficos.obtenerSiONo(datos, "afiliacionSalud", graficos.graf4Param));
                 console.log(graficos.obtenerSiONo(datos, "seguroGastos", graficos.graf5Param));
                 console.log(graficos.obtenerSiONo(datos, "medicamentoDificultad", graficos.graf6Param));
-                console.log(graficos.obtenerGruposConLimite(datos, "consultasPublicas",graficos.graf7Param, 50, 6, 10));
-                console.log(graficos.obtenerGruposConLimite(datos, "consultasPrivadas",graficos.graf8Param, 50, 6, 10));
-                console.log(graficos.obtenerGruposCheckBox(datos, ["publicoMB", "publicoOQ"], graficos.graf9Param));
+                console.log(graficos.obtenerGruposConLimite(datos, "consultasPublicas",graficos.graf7Param, 50, 6, 10)); //Grafico de barras doble de las consultas publicas
+                console.log(graficos.obtenerGruposConLimite(datos, "consultasPrivadas",graficos.graf8Param, 50, 6, 10)); //Grafico de barras doble de las consultas privadas
+                console.log(graficos.obtenerGruposCheckBox(datos, ["publicoMB", "publicoOQ", "publicoEV", "publicoEC", "publicoC", "publicoTD", "publicoO"], graficos.graf9Param, ["Malestares básicos","Op. quirúrgicas","Enf. venéreas","Enf. crónicas","Chequeos","Trat. dentales","Otros"]));
+                console.log(graficos.obtenerGruposCheckBox(datos, ["privadoMB", "privadoOQ", "privadoEV", "privadoEC", "privadoC", "privadoTD", "privadoO"], graficos.graf10Param, ["Malestares básicos","Op. quirúrgicas","Enf. venéreas","Enf. crónicas","Chequeos","Trat. dentales","Otros"]));
+                console.log(graficos.obtenerGruposConLimite(datos, "gastoPublico",graficos.graf11Param, 20000, 5, 5000)); //Grafico de barras doble de los gastos de salud publica
+                console.log(graficos.obtenerGruposConLimite(datos, "gastoPrivado",graficos.graf12Param, 20000, 5, 5000)); //Grafico de barras doble de los gastos de salud privada
+                console.log(graficos.obtenerGruposConLimite(datos, "clinicasPublicas",graficos.graf13Param, 5, 6, 1)); //Grafico de barras doble de los establecimientos de salud publica en la localidad
+                console.log(graficos.obtenerGruposConLimite(datos, "clinicasPrivadas",graficos.graf14Param, 5, 6, 1)); //Grafico de barras doble de los establecimientos de salud privada en la localidad
+                console.log(graficos.obtenerGruposCheckBox(datos, ["IMSS", "ISSSTE", "farmaciasSimilares", "cruzRoja", "hospitalesGenerales", "hospitalesPrivados", "otrosServicios"], graficos.graf15Param, ["IMSS", "ISSSTE", "Farmacias Similares", "Cruz Roja", "Hosp. Generales", "Hosp. Privados", "Otros"]));
+                console.log(graficos.obtenerGruposSelect(datos,"satisfaccionPublica", graficos.graf16Param, ["Muy satisfecho", "Satisfecho", "Insatisfecho", "Muy insatisfecho"])); //Grafico de pastel con opciones de un select
+                console.log(graficos.obtenerGruposSelect(datos,"satisfaccionPrivada", graficos.graf17Param, ["Muy satisfecho", "Satisfecho", "Insatisfecho", "Muy insatisfecho"])); //Grafico de pastel con opciones de un select
+                console.log(graficos.obtenerGruposSelect(datos,"accesibilidadDistancia", graficos.graf18Param, ["Muy accesibles", "Moderadamente Accesibles", "Poco accesibles", "Inaccesibles"])); //Grafico de pastel con opciones de un select
+                console.log(graficos.obtenerGruposSelect(datos,"chequeosAnuales", graficos.graf19Param, ["Nunca", "Una vez al año", "Más de una vez al año"])); //Grafico de pastel con opciones de un select
+                console.log(graficos.obtenerGruposSelect(datos,"consultasOnline", graficos.graf20Param, ["Nunca", "Una vez al año", "Más de una vez al año"])); //Grafico de pastel con opciones de un select
+                console.log(graficos.obtenerGruposSelect(datos,"razonNoVisita", graficos.graf21Param, ["Problemas económicos", "Falta de tiempo", "Lejanía de los establecimientos"])); //Grafico de pastel con opciones de un select
+                console.log(graficos.obtenerGruposCheckBox(datos, ["infraestructura", "personal", "costos", "disponibilidadMed", "otroMejoras"], graficos.graf22Param, ["Infraestructura","Más personal","Costos","Más medicamentos","Otro"]));
                 graficos.graficoEdades();
             }
         });
