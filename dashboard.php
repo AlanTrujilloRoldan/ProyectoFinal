@@ -28,6 +28,27 @@
             min-height: 170px; /* Establece una altura mínima */
             max-width: 100%; /* Ensure the width does not exceed the container */
         }
+
+        .btna {
+            border: none; 
+            color: white; 
+            padding: 14px 28px; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            display: inline-block;
+            margin: 5px;
+            transition: box-shadow 0.1s ease-in-out; /* Transición suave del efecto de sombra */
+        }
+
+        .shadow-effect:hover {
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Aumenta el desplazamiento y la opacidad de la sombra */
+        }
+
+        .success {background-image: linear-gradient(to right, #28a745, #56c150);} 
+        .success:hover {background-image: linear-gradient(to right, #34b556, #56c150);}
+
+        .primary {background-image: linear-gradient(to right, #007bff, #4ab2e2);} 
+        .primary:hover {background-image: linear-gradient(to right, #0b7dda, #4ab2e2);}
         
     </style>
 
@@ -58,17 +79,14 @@
 
     <div class="container-fluid bg-primary" style="margin-top:30px;">
         <div class="row ">
-            <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center">
-                <div class="container bg-danger  mt-5 text-center pb-5">
-                <ul class="nav flex-column ">
-                    <li class="nav-item mb-4">
-                        <button type="button" class="btn btn-success" fdprocessedid="megrkk" id="nacionales">Datos Nacionales</button>
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="container bg-danger mt-5 text-center">
+                <ul class="nav d-flex justify-content-center">
+                    <li class=" mt-2 mb-3 col-12">
+                        <button type="button" class="btna success shadow-effect" fdprocessedid="megrkk" id="nacionales">Datos Nacionales</button>
                     </li>
-                    <li class="nav-item mb-4">
-                        <button type="button" class="btn btn-primary" fdprocessedid="megrkk">Más necesitados</button>
-                    </li>
-                    <li class="nav-item mb-4">
 
+                    <li class="nav-item col-12">
                         <div class="form-group ">
                             <label class="badge-pill badge-secondary" for="estadosSelect">Selecciona un Estado:</label>
                             <select class="form-control form-select" id="estadosSelect">
@@ -107,16 +125,13 @@
                                 <option value="32">Zacatecas</option>
                             </select>
                             <!-- Botón para enviar -->
-                            <button class="btn btn-primary mt-2" id="submitButton">Seleccionar Estado</button>
+                            <button class="btna primary shadow-effect mt-3" id="submitButton">Seleccionar Estado</button>
                         </div>
-                    </li>
-                    <li class="nav-item mb-4">
-                        <button type="button" class="btn btn-warning" fdprocessedid="megrkk">Estadísticas</button>
                     </li>
                 </ul>
                 </div>
             </div>
-            <div class="col-12 col-sm-9">
+            <div class="col-12 ">
                 <div class="container bg-success pt-3 mt-5">
                     <div class="row">
                         <div class="col-12 text-center ">
