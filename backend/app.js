@@ -110,6 +110,13 @@ class app {
         $('#medicamentosDificultad').on('blur', () => this.validateRadioButtonGroup('input[name="medicamentos"]', '#medicamentosDificultad-error'));
         $('#mejoras').on('blur', () => this.validateCheckBoxGroup('.mejorasCheckbox', '#mejoras-error'));
 
+        // VALIDAR CARACTERES PERMITIDOS
+        $('#consultasPublicas').on("keypress",  (e) => this.valNumNa(e));
+        $('#consultasPrivadas').on("keypress",  (e) => this.valNumNa(e));
+        $('#gastoPublico').on("keypress", (e) => this.valNumRa(e));
+        $('#gastoPrivado').on("keypress",  (e) => this.valNumRa(e));
+        $('#clinicasPrivadas').on("keypress", (e) => this.valNumNa(e));
+        $('#clinicasPublicas').on("keypress", (e) => this.valNumNa(e));
     }
 
     async convertirMayusculas() {
@@ -326,6 +333,26 @@ class app {
             return false;
         }
         return true;
+    }
+
+    valNumRa(e){ //Validar números reales, 48 a 57 son los códigos ASCII de los números del 0 al 9, pero también se permite el punto decimal que es el 46 en ASCII
+        console.log(e);
+        var code = e.which;
+        console.log(code)
+        if(code>=48 && code<=57)
+            return true;
+        else if(code == 46)
+            return true;
+        else
+            return false;
+    }
+
+    valNumNa(e){ //Validar números naturales, 48 a 57 son los códigos ASCII de los números del 0 al 9
+        var code = e.which;
+        if(code>=48 && code<=57)
+            return true;
+        else
+            return false;
     }
 }
 
