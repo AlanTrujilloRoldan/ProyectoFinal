@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UMSS</title>
     <!-- BOOTSTRAP 4 -->
     <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+    <?php
+        // DATOS PERSONALES
+        $infoCURP = "
+            • 4 letras <br/>
+            • 6 dígitos (fecha válida) <br/>
+            • 1 letra (sexo) <br/>
+            • 2 letras (código estado) <br/>
+            • 3 letras <br/>
+            • 1 letra o dígito <br/>
+            • 1 dígito <br/>
+            Total: 18 caracteres";
+        $infoEdad = "Edad entre 0 a 99 años <em>(sin decimales)</em>";
+        // Uso y Preferencia de Servicios de Salud
+        $infoUso = "Número entre 0 y 365 <em>(sin decimales)</em>";
+        
+        $infoNumC = "Número mayor o igual a 0 <em>(sin decimales)</em>";
+        // Transporte y Cercania
+        $infoGasto = "Número mayor o igual a 0 <em>(puede llevar decimales)</em>";
+    ?>
 </head>
-
 <body>
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,12 +61,12 @@
 
                             <div class="form-group">
                                 <label for="curp" class="col-sm-2 col-form-label">CURP</label>
-                                <input class="form-control" type="text" id="curp" placeholder="CURP" maxlength="18" minlength="18">
+                                <input class="form-control" type="text" id="curp" placeholder="CURP" maxlength="18" minlength="18" data-toggle="tooltip" data-placement="top" data-html="true" title="<?php echo $infoCURP;?>">
                                 <p id="curp-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
                             <div class="form-group">
                                 <label for="edad" class="col-sm-2 col-form-label">Edad</label>
-                                <input class="form-control" type="number" id="edad" placeholder="Edad" min="0" max="99">
+                                <input class="form-control" type="number" id="edad" placeholder="Edad" min="0" max="99" data-toggle="tooltip" data-placement="top" data-html="true" title="<?php echo $infoEdad;?>">
                                 <p id="edad-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
                             <div class="form-group">
@@ -216,12 +233,12 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="gastoPublico" class="col-form-label">¿Cuál es el gasto que implica una visita a un servicio de salud pública?</label>
-                                <input class="form-control" type="number" id="gastoPublico" placeholder="Ingrese un número" min="0">
+                                <input class="form-control" type="number" id="gastoPublico" placeholder="Ingrese un número" min="0" data-toggle="tooltip" data-placement="top" data-html="true" title="<?php echo $infoGasto;?>">
                                 <p id="gastoPublico-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
                             <div class="form-group">
                                 <label for="gastoPrivado" class="col-form-label">¿Cuál es el gasto que implica una visita a un servicio de salud privada? </label>
-                                <input class="form-control" type="number" id="gastoPrivado" placeholder="Ingrese un número" min="0">
+                                <input class="form-control" type="number" id="gastoPrivado" placeholder="Ingrese un número" min="0" data-toggle="tooltip" data-placement="top" data-html="true" title="<?php echo $infoGasto;?>">
                                 <p id="gastoPrivado-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
                             </div>
                             <div class="form-group">
@@ -444,6 +461,8 @@
     <!-- Lógica del Frontend -->
     <script src="./backend/app.js"></script>
 
+    <!-- Para los tooltips -->
+    <script> $(function () { $('[data-toggle="tooltip"]').tooltip()})</script>
 </body>
 
 </html>
