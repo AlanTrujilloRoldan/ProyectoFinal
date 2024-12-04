@@ -63,6 +63,10 @@
                                 <label for="curp" class="col-sm-2 col-form-label">CURP</label>
                                 <input class="form-control" type="text" id="curp" placeholder="CURP" maxlength="18" minlength="18" data-toggle="tooltip" data-placement="top" data-html="true" title="<?php echo $infoCURP;?>">
                                 <p id="curp-error" class="card my-4 bg-danger border border-dark rounded p-4"></p>
+                                <a href="https://www.gob.mx/curp/" target="_blank">
+                                    <button class="btn btn-sm text-center mt-4" type="button" id="goToCURP" style="color:white; background-color:#611232">Consultar mi CURP</button>
+                                </a>
+
                             </div>
                             <div class="form-group">
                                 <label for="edad" class="col-sm-2 col-form-label">Edad</label>

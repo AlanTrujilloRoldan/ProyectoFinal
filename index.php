@@ -80,6 +80,11 @@
                         </p>
                     </div>
                 </div>
+
+                <h2 class="mt-4">Aprender más al respecto</h2>
+                <div class="card">
+                     <iframe width="100%" height="400" src="https://www.youtube.com/embed/wW-uXU9w8fo" title="Salus como derecho en México" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                 </div>
             </div>
         </div>
     </div>
